@@ -1,0 +1,102 @@
+inherited Frm_CadValues: TFrm_CadValues
+  Caption = 'Cadastro de Valores'
+  ClientHeight = 299
+  ClientWidth = 487
+  Position = poScreenCenter
+  ExplicitWidth = 487
+  ExplicitHeight = 299
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 487
+    ExplicitWidth = 465
+    inherited Label1: TLabel
+      Width = 68
+      Caption = 'Valores'
+      ExplicitWidth = 68
+    end
+  end
+  inherited Panel2: TPanel
+    Width = 487
+    Height = 234
+    ExplicitWidth = 465
+    ExplicitHeight = 184
+    inherited Panel3: TPanel
+      Top = 192
+      Width = 485
+      ExplicitTop = 142
+      ExplicitWidth = 463
+    end
+    inherited Panel4: TPanel
+      Width = 485
+      Height = 191
+      Cursor = crArrow
+      ExplicitWidth = 463
+      ExplicitHeight = 141
+      object Label2: TLabel [0]
+        Left = 149
+        Top = 41
+        Width = 87
+        Height = 13
+        Caption = 'Selecionar Servi'#231'o'
+      end
+      object Label3: TLabel [1]
+        Left = 149
+        Top = 82
+        Width = 27
+        Height = 13
+        Caption = 'Pre'#231'o'
+      end
+      object Edit1: TEdit [2]
+        Left = 17
+        Top = 5
+        Width = 121
+        Height = 21
+        TabOrder = 1
+      end
+      object Edit2: TEdit [3]
+        Left = 147
+        Top = 96
+        Width = 145
+        Height = 21
+        TabOrder = 0
+      end
+      inherited Button1: TButton
+        Left = 147
+        Top = 136
+        Width = 145
+        TabOrder = 2
+        ExplicitLeft = 147
+        ExplicitTop = 136
+        ExplicitWidth = 145
+      end
+      object DBLookupComboBox1: TDBLookupComboBox
+        Left = 147
+        Top = 55
+        Width = 145
+        Height = 21
+        TabOrder = 3
+      end
+    end
+  end
+  inherited FDQry_Cadastro: TFDQuery
+    BeforePost = FDQry_CadastroBeforePost
+    SQL.Strings = (
+      'select '
+      'id_servico,'
+      'preco'
+      ''
+      'from valores')
+    Left = 384
+    object FDQry_Cadastroid_servico: TIntegerField
+      FieldName = 'id_servico'
+      Origin = 'id_servico'
+    end
+    object FDQry_Cadastropreco: TFloatField
+      FieldName = 'preco'
+      Origin = 'preco'
+    end
+  end
+  inherited DS_CadCont: TDataSource
+    Left = 304
+  end
+end

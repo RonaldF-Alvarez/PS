@@ -1,0 +1,90 @@
+object Frm_Padrao: TFrm_Padrao
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsNone
+  Caption = 'Sistema'
+  ClientHeight = 320
+  ClientWidth = 536
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  Position = poDesigned
+  Visible = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 536
+    Height = 65
+    Align = alTop
+    Color = clSkyBlue
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 529
+    object Label1: TLabel
+      Left = 88
+      Top = 21
+      Width = 184
+      Height = 25
+      Alignment = taCenter
+      Caption = 'Cadastro de Padrao'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 65
+    Width = 536
+    Height = 255
+    Align = alClient
+    TabOrder = 1
+    ExplicitWidth = 529
+    ExplicitHeight = 220
+    object Panel3: TPanel
+      Left = 1
+      Top = 213
+      Width = 534
+      Height = 41
+      Align = alBottom
+      Color = clSkyBlue
+      ParentBackground = False
+      TabOrder = 0
+      ExplicitTop = 178
+      ExplicitWidth = 527
+    end
+    object Panel4: TPanel
+      Left = 1
+      Top = 1
+      Width = 534
+      Height = 212
+      Align = alClient
+      Color = cl3DLight
+      ParentBackground = False
+      TabOrder = 1
+      ExplicitWidth = 527
+      ExplicitHeight = 177
+    end
+  end
+  object FDQry_Cadastro: TFDQuery
+    Connection = DM.FDConnection
+    Left = 400
+    Top = 16
+  end
+  object DS_CadCont: TDataSource
+    DataSet = FDQry_Cadastro
+    Left = 312
+    Top = 16
+  end
+end

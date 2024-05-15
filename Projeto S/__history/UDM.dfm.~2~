@@ -1,0 +1,20 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 298
+  Width = 525
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    VendorLib = 'C:\Program Files (x86)\PostgreSQL\psqlODBC\bin\libpq.dll'
+    Left = 85
+    Top = 33
+  end
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=DBSERV'
+      'User_Name=postgres'
+      'Password=2581379'
+      'DriverID=PG')
+    Left = 213
+    Top = 24
+  end
+end

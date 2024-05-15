@@ -1,0 +1,64 @@
+unit UCadClient;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.Mask, UCadPadrao;
+
+type
+  TFrmCAD = class(TFrm_Padrao)
+    Label1: TLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    FDQry_CadCont: TFDQuery;
+    DS_CadCont: TDataSource;
+    FDQry_CadContcod: TIntegerField;
+    FDQry_CadContnome: TWideStringField;
+    FDQry_CadContcpf_cnpj: TWideStringField;
+    FDQry_CadConttelefone: TWideStringField;
+    Panel3: TPanel;
+    DBNavigator2: TDBNavigator;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FDQry_CadContBeforeInsert(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCAD: TFrmCAD;
+
+implementation
+
+{$R *.dfm}
+
+uses UDM;//Frm_PadraoUCadPadrao;
+
+procedure TFrmCAD.FDQry_CadContBeforeInsert(DataSet: TDataSet);
+begin
+  FDQry_CadContcod.asinteger :=  DM.RetornaContador('contratantes','cod');
+End;
+
+procedure TFrmCAD.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  action := cafree;
+  FrmCAD:= nil;
+end;
+
+procedure TFrmCAD.FormCreate(Sender: TObject);
+begin
+  try
+    FDQry_CadCont.open;
+  except
+     raise Exception.Create('Error ao se conectar a tabela de contratante');
+  end;
+end;
+
+end.

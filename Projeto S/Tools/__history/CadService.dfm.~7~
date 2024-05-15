@@ -1,0 +1,141 @@
+object CadServ: TCadServ
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Servi'#231'o'
+  ClientHeight = 372
+  ClientWidth = 379
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblNome: TLabel
+    Left = 24
+    Top = 94
+    Width = 97
+    Height = 16
+    Caption = 'Nome do Servi'#231'o'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 80
+    Top = 32
+    Width = 190
+    Height = 25
+    Caption = 'Cadastro de servi'#231'o!'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LblDesc: TLabel
+    Left = 24
+    Top = 140
+    Width = 55
+    Height = 16
+    Caption = 'Descri'#231#227'o'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LblValor: TLabel
+    Left = 24
+    Top = 188
+    Width = 30
+    Height = 16
+    Caption = 'Valor'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 112
+    Top = 248
+    Width = 126
+    Height = 33
+    Caption = 'Cadastrar'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object CheckBox1: TCheckBox
+    Left = 117
+    Top = 287
+    Width = 121
+    Height = 17
+    Caption = 'Pertence a um grupo'
+    TabOrder = 1
+  end
+  object EditNome: TEdit
+    Left = 24
+    Top = 113
+    Width = 329
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+  end
+  object EditDesc: TEdit
+    Left = 24
+    Top = 162
+    Width = 329
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+  end
+  object EditValor: TEdit
+    Left = 24
+    Top = 205
+    Width = 113
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+  end
+  object ADOConnection: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=ADsDSOObject;Password=2000;User ID=SYSDBA;Encrypt Passw' +
+      'ord=False;Data Source=OBDC FIREBIRD;Location=D:\Firebird\DB\DBSE' +
+      'RV.FDB;Mode=Read;Bind Flags=0;ADSI Flag=-2147483648'
+    Mode = cmRead
+    Provider = 'ADsDSOObject'
+    Left = 312
+    Top = 16
+  end
+  object ADOQuery: TADOQuery
+    Connection = ADOConnection
+    Parameters = <>
+    Left = 320
+    Top = 64
+  end
+end

@@ -1,0 +1,58 @@
+unit Functions;
+
+interface
+
+uses
+  FireDAC.Phys.PGDef, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.PG, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet,
+  UDM;
+
+type
+  functionsys = class
+  PUBLIC
+    function RetornaContador(tabela,campo:string):Integer;
+
+
+
+  end;
+
+implementation
+
+
+
+function functionsys.RetornaContador(tabela,campo:string):Integer;
+begin
+var
+  FDQuery: TFDQuery;
+  FDConnection: TFDConnection;
+begin
+
+  FDQuery := TFDQuery.Create(nil);
+  try
+    // Configuração da conexão
+   // FDQuery.Connection := TDM.FDConnection; // Substitua FDConnection1 pelo seu objeto de conexão existente
+
+    // Configuração da SQL da consulta
+    FDQuery.SQL.Text := 'SELECT * FROM sua_tabela';
+
+    // Abertura da consulta
+    FDQuery.Open;
+
+    // Utilização dos dados retornados pela consulta
+
+  finally
+    // Liberação dos recursos
+    FDQuery.Free;
+  end;
+end;
+
+
+
+
+end;
+
+end.

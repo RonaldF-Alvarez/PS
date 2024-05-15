@@ -1,0 +1,23 @@
+unit Functions;
+
+interface
+
+uses
+UDM;
+
+type
+    functionsys = class
+    function RetornaContador(tabela,campo:string):Integer;
+
+    end;
+
+implementation
+
+function functionsys.RetornaContador(tabela,campo:string):Integer;
+begin
+
+
+
+end;
+
+end.

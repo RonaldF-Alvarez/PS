@@ -1,0 +1,33 @@
+unit CadService;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TCadServ = class(TForm)
+    LblNome: TLabel;
+    Button1: TButton;
+    CheckBox1: TCheckBox;
+    EditNome: TEdit;
+    Label2: TLabel;
+    LblDesc: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    LblValor: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  CadServ: TCadServ;
+
+implementation
+
+{$R *.dfm}
+
+end.

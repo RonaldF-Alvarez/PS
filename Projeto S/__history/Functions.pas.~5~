@@ -1,0 +1,47 @@
+unit Functions;
+
+interface
+
+uses
+  UDM, FireDAC.Comp.Client, FireDAC.Stan.Def;
+
+type
+  functionsys = class
+  PUBLIC
+    function RetornaContador(tabela,campo:string):Integer;
+    function conect(DM : UDM) :TFDQuery;
+
+  end;
+
+implementation
+
+function functionsys.RetornaContador(tabela,campo:string):Integer;
+begin
+var
+  FDQuery: TFDQuery;
+begin
+
+  {FDQuery := TFDQuery.Create(nil);
+  try
+    // Configuração da conexão
+    FDQuery.Connection := TDM.FDConnection; // Substitua FDConnection1 pelo seu objeto de conexão existente
+
+    // Configuração da SQL da consulta
+    FDQuery.SQL.Text := 'SELECT * FROM sua_tabela';
+
+    // Abertura da consulta
+    FDQuery.Open;
+
+    // Utilização dos dados retornados pela consulta
+
+  finally
+    // Liberação dos recursos
+    FDQuery.Free;
+  end;     }
+end;
+
+
+
+end;
+
+end.
