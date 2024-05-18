@@ -1,14 +1,15 @@
 inherited Frm_CadClient: TFrm_CadClient
   Caption = 'Cadastro de Clientes'
-  ClientHeight = 493
-  ClientWidth = 540
+  ClientHeight = 451
+  ClientWidth = 537
   Position = poScreenCenter
-  ExplicitWidth = 540
-  ExplicitHeight = 493
+  ExplicitWidth = 537
+  ExplicitHeight = 451
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 540
-    ExplicitWidth = 524
+    Width = 537
+    Color = clGradientActiveCaption
+    ExplicitWidth = 521
     inherited Label1: TLabel
       Width = 73
       Caption = 'Clientes'
@@ -16,114 +17,63 @@ inherited Frm_CadClient: TFrm_CadClient
     end
   end
   inherited Panel2: TPanel
-    Width = 540
-    Height = 428
-    ExplicitWidth = 524
-    ExplicitHeight = 386
+    Width = 537
+    Height = 386
+    ExplicitWidth = 521
+    ExplicitHeight = 342
     inherited Panel3: TPanel
-      Top = 387
-      Width = 538
+      Top = 345
+      Width = 535
       Height = 40
-      ExplicitTop = 345
-      ExplicitWidth = 522
+      ExplicitTop = 301
+      ExplicitWidth = 519
       ExplicitHeight = 40
       inherited ToolBar1: TToolBar
-        Width = 536
-        ButtonHeight = 40
-        ButtonWidth = 40
-        Images = ImageList1
-        ExplicitWidth = 520
-        inherited ToolButton7: TToolButton
-          Action = DataSetInsert2
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton2: TToolButton
-          Left = 40
-          Action = DataSetEdit2
-          ExplicitLeft = 40
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton3: TToolButton
-          Left = 80
-          Action = DataSetCancel2
-          ExplicitLeft = 80
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton6: TToolButton
-          Left = 120
-          Action = DataSetPost2
-          ExplicitLeft = 120
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton4: TToolButton
-          Left = 160
-          Action = DataSetDelete2
-          ExplicitLeft = 160
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
+        Width = 533
+        ExplicitWidth = 517
         inherited ToolButton5: TToolButton
-          Left = 200
-          Width = 169
-          ExplicitLeft = 200
-          ExplicitWidth = 169
-          ExplicitHeight = 40
+          Width = 171
+          ExplicitWidth = 171
         end
-        inherited ToolButton1: TToolButton
-          Left = 369
-          Action = DataSetFirst2
-          ExplicitLeft = 369
-          ExplicitWidth = 40
-          ExplicitHeight = 40
+        inherited Primeiro: TToolButton
+          Left = 371
+          ExplicitLeft = 371
         end
-        inherited ToolButton8: TToolButton
-          Left = 409
-          Action = DataSetPrior2
-          ExplicitLeft = 409
-          ExplicitWidth = 40
-          ExplicitHeight = 40
+        inherited Anterior: TToolButton
+          Left = 411
+          ExplicitLeft = 411
         end
-        inherited ToolButton9: TToolButton
-          Left = 449
-          Action = DataSetNext2
-          ExplicitLeft = 449
-          ExplicitWidth = 40
-          ExplicitHeight = 40
+        inherited Proximo: TToolButton
+          Left = 451
+          ExplicitLeft = 451
         end
-        inherited ToolButton10: TToolButton
-          Left = 489
-          Action = DataSetLast2
-          ExplicitLeft = 489
-          ExplicitWidth = 40
-          ExplicitHeight = 40
+        inherited Ultimo: TToolButton
+          Left = 491
+          ExplicitLeft = 491
         end
       end
     end
     inherited Panel4: TPanel
-      Width = 538
-      Height = 386
-      ExplicitWidth = 522
-      ExplicitHeight = 344
+      Width = 535
+      Height = 344
+      ExplicitWidth = 519
+      ExplicitHeight = 300
       object Label2: TLabel
-        Left = 44
+        Left = 49
         Top = 37
         Width = 27
         Height = 13
         Caption = 'Nome'
       end
       object Label3: TLabel
-        Left = 46
+        Left = 51
         Top = 82
         Width = 51
         Height = 13
         Caption = 'CPF/ CNPJ'
       end
       object Label4: TLabel
-        Left = 171
+        Left = 176
         Top = 82
         Width = 42
         Height = 13
@@ -131,50 +81,50 @@ inherited Frm_CadClient: TFrm_CadClient
       end
       object Panel5: TPanel
         Left = 1
-        Top = 226
-        Width = 536
+        Top = 184
+        Width = 533
         Height = 159
         Align = alBottom
         TabOrder = 0
-        ExplicitTop = 184
-        ExplicitWidth = 520
+        ExplicitTop = 140
+        ExplicitWidth = 517
         object Label5: TLabel
-          Left = 45
+          Left = 51
           Top = 26
           Width = 45
           Height = 13
           Caption = 'Endere'#231'o'
         end
         object Label6: TLabel
-          Left = 45
+          Left = 51
           Top = 66
           Width = 65
           Height = 13
           Caption = 'Complemento'
         end
         object Label7: TLabel
-          Left = 377
+          Left = 383
           Top = 66
           Width = 19
           Height = 13
           Caption = 'CEP'
         end
         object Label8: TLabel
-          Left = 45
+          Left = 51
           Top = 108
           Width = 28
           Height = 13
           Caption = 'Bairro'
         end
         object Label9: TLabel
-          Left = 221
+          Left = 227
           Top = 108
           Width = 33
           Height = 13
           Caption = 'Cidade'
         end
         object Label10: TLabel
-          Left = 422
+          Left = 428
           Top = 108
           Width = 13
           Height = 13
@@ -188,7 +138,7 @@ inherited Frm_CadClient: TFrm_CadClient
           Caption = 'Adicionar Endere'#231'o do Contratante'
         end
         object DBEditEnd: TDBEdit
-          Left = 43
+          Left = 49
           Top = 39
           Width = 437
           Height = 21
@@ -197,7 +147,7 @@ inherited Frm_CadClient: TFrm_CadClient
           TabOrder = 0
         end
         object DBEditEndComp: TDBEdit
-          Left = 44
+          Left = 50
           Top = 81
           Width = 327
           Height = 21
@@ -206,7 +156,7 @@ inherited Frm_CadClient: TFrm_CadClient
           TabOrder = 1
         end
         object DBEditEndCEP: TDBEdit
-          Left = 375
+          Left = 381
           Top = 81
           Width = 105
           Height = 21
@@ -215,7 +165,7 @@ inherited Frm_CadClient: TFrm_CadClient
           TabOrder = 2
         end
         object DBEditEndBairro: TDBEdit
-          Left = 43
+          Left = 49
           Top = 121
           Width = 171
           Height = 21
@@ -224,7 +174,7 @@ inherited Frm_CadClient: TFrm_CadClient
           TabOrder = 3
         end
         object DBEditEndCidade: TDBEdit
-          Left = 219
+          Left = 225
           Top = 121
           Width = 195
           Height = 21
@@ -233,7 +183,7 @@ inherited Frm_CadClient: TFrm_CadClient
           TabOrder = 4
         end
         object DBEditEndUF: TDBEdit
-          Left = 419
+          Left = 425
           Top = 121
           Width = 61
           Height = 21
@@ -253,7 +203,7 @@ inherited Frm_CadClient: TFrm_CadClient
         end
       end
       object DBEditNome: TDBEdit
-        Left = 44
+        Left = 50
         Top = 56
         Width = 437
         Height = 21
@@ -262,7 +212,7 @@ inherited Frm_CadClient: TFrm_CadClient
         TabOrder = 1
       end
       object DBEditCPF: TDBEdit
-        Left = 44
+        Left = 50
         Top = 94
         Width = 117
         Height = 21
@@ -271,7 +221,7 @@ inherited Frm_CadClient: TFrm_CadClient
         TabOrder = 2
       end
       object DBEditTelefone: TDBEdit
-        Left = 169
+        Left = 174
         Top = 94
         Width = 124
         Height = 21
@@ -281,28 +231,29 @@ inherited Frm_CadClient: TFrm_CadClient
       end
       object Panel6: TPanel
         Left = 1
-        Top = 186
-        Width = 536
+        Top = 144
+        Width = 533
         Height = 40
         Align = alBottom
         Caption = 'Panel6'
         TabOrder = 4
-        ExplicitTop = 144
-        ExplicitWidth = 520
+        ExplicitTop = 100
+        ExplicitWidth = 517
         object ToolBar2: TToolBar
           Left = 1
           Top = 1
-          Width = 534
+          Width = 531
           Height = 31
           ButtonHeight = 40
           ButtonWidth = 40
           Caption = 'pane'
           Images = ImageList1
           TabOrder = 0
-          ExplicitWidth = 518
+          ExplicitWidth = 515
           object ToolButton11: TToolButton
             Left = 0
             Top = 0
+            Hint = 'Inserir'
             Action = DatasetInsert1
             ParentShowHint = False
             ShowHint = True
@@ -317,15 +268,14 @@ inherited Frm_CadClient: TFrm_CadClient
           object ToolButton13: TToolButton
             Left = 80
             Top = 0
-            Hint = 'Cancel'
-            Caption = '&Cancel'
-            ImageIndex = 8
+            Action = DatasetCancel1
             ParentShowHint = False
             ShowHint = True
           end
           object ToolButton14: TToolButton
             Left = 120
             Top = 0
+            Hint = 'Enviar'
             Action = DatasetPost1
             ParentShowHint = False
             ShowHint = True
@@ -333,6 +283,7 @@ inherited Frm_CadClient: TFrm_CadClient
           object ToolButton15: TToolButton
             Left = 160
             Top = 0
+            Hint = 'Deletar'
             Action = DatasetDelete1
             ParentShowHint = False
             ShowHint = True
@@ -340,35 +291,39 @@ inherited Frm_CadClient: TFrm_CadClient
           object ToolButton16: TToolButton
             Left = 200
             Top = 0
-            Width = 168
+            Width = 170
             Caption = 'ToolButton5'
             ImageIndex = 4
             Style = tbsSeparator
           end
           object ToolButton17: TToolButton
-            Left = 368
+            Left = 370
             Top = 0
+            Hint = 'Primeiro'
             Action = DatasetFirst1
             ParentShowHint = False
             ShowHint = True
           end
           object ToolButton18: TToolButton
-            Left = 408
+            Left = 410
             Top = 0
+            Hint = 'Anterior'
             Action = DatasetPrior1
             ParentShowHint = False
             ShowHint = True
           end
           object ToolButton19: TToolButton
-            Left = 448
+            Left = 450
             Top = 0
+            Hint = 'Proximo'
             Action = DatasetNext1
             ParentShowHint = False
             ShowHint = True
           end
           object ToolButton20: TToolButton
-            Left = 488
+            Left = 490
             Top = 0
+            Hint = 'Ultimo'
             Action = DatasetLast1
             ParentShowHint = False
             ShowHint = True
@@ -455,7 +410,7 @@ inherited Frm_CadClient: TFrm_CadClient
       'where cpf_cnpj = :cpf_cnpj'
       'order by cpf_cnpj')
     Left = 465
-    Top = 210
+    Top = 170
     ParamData = <
       item
         Name = 'CPF_CNPJ'
@@ -468,7 +423,7 @@ inherited Frm_CadClient: TFrm_CadClient
   object DS_CadEnd: TDataSource
     DataSet = FDQry_Endereco
     Left = 393
-    Top = 210
+    Top = 178
   end
   object ActionList2: TActionList
     Images = ImageList1

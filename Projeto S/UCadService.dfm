@@ -1,15 +1,15 @@
-inherited Frm_CadService: TFrm_CadService
+﻿inherited Frm_CadService: TFrm_CadService
   Caption = 'Cadastrar Servi'#231'os'
-  ClientHeight = 456
-  ClientWidth = 409
+  ClientHeight = 469
+  ClientWidth = 415
   Position = poScreenCenter
-  ExplicitWidth = 409
-  ExplicitHeight = 456
+  ExplicitWidth = 415
+  ExplicitHeight = 469
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 409
+    Width = 415
     Color = clGradientActiveCaption
-    ExplicitWidth = 393
+    ExplicitWidth = 399
     inherited Label1: TLabel
       Left = 168
       Top = 16
@@ -40,102 +40,40 @@ inherited Frm_CadService: TFrm_CadService
     end
   end
   inherited Panel2: TPanel
-    Width = 409
-    Height = 391
-    ExplicitWidth = 393
-    ExplicitHeight = 351
+    Width = 415
+    Height = 404
+    ExplicitWidth = 399
+    ExplicitHeight = 357
     inherited Panel3: TPanel
       Top = 89
-      Width = 407
+      Width = 413
       Align = alTop
       Color = cl3DLight
       ExplicitTop = 89
-      ExplicitWidth = 391
+      ExplicitWidth = 397
       inherited ToolBar1: TToolBar
-        Width = 405
+        Width = 411
         Height = 34
-        ButtonHeight = 40
-        ButtonWidth = 40
         Color = clNone
-        Images = ImageList1
         ParentColor = False
-        ExplicitWidth = 389
+        ParentShowHint = False
+        ShowHint = True
+        ExplicitWidth = 395
         ExplicitHeight = 34
-        inherited ToolButton7: TToolButton
-          Action = DatasetInsert1
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton2: TToolButton
-          Left = 40
-          Action = DatasetEdit1
-          ExplicitLeft = 40
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton3: TToolButton
-          Left = 80
-          Action = DatasetCancel1
-          ExplicitLeft = 80
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton6: TToolButton
-          Left = 120
-          Action = DatasetPost1
-          ExplicitLeft = 120
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton4: TToolButton
-          Left = 160
-          Action = DatasetDelete1
-          ExplicitLeft = 160
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
         inherited ToolButton5: TToolButton
-          Left = 200
-          Width = 40
-          ExplicitLeft = 200
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton1: TToolButton
-          Left = 240
+          Hint = 'Primeiro'
           Action = DatasetFirst1
-          ExplicitLeft = 240
-          ExplicitWidth = 40
-          ExplicitHeight = 40
         end
-        inherited ToolButton8: TToolButton
-          Left = 280
-          Action = DatasetPrior1
-          ExplicitLeft = 280
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton9: TToolButton
-          Left = 320
-          Action = DatasetNext1
-          ExplicitLeft = 320
-          ExplicitWidth = 40
-          ExplicitHeight = 40
-        end
-        inherited ToolButton10: TToolButton
-          Left = 360
-          Action = DatasetLast1
-          ExplicitLeft = 360
-          ExplicitWidth = 40
-          ExplicitHeight = 40
+        inherited Ultimo: TToolButton
+          Action = DataSetLast2
         end
       end
     end
     inherited Panel4: TPanel
-      Width = 407
+      Width = 413
       Height = 88
       Align = alTop
-      ExplicitWidth = 391
+      ExplicitWidth = 397
       ExplicitHeight = 88
       object Label2: TLabel
         Left = 30
@@ -172,104 +110,107 @@ inherited Frm_CadService: TFrm_CadService
     end
     object Panel5: TPanel
       Left = 1
-      Top = 349
-      Width = 407
+      Top = 362
+      Width = 413
       Height = 41
       Align = alBottom
       Color = cl3DLight
       ParentBackground = False
       TabOrder = 2
-      ExplicitTop = 309
-      ExplicitWidth = 391
+      ExplicitTop = 315
+      ExplicitWidth = 397
       object ToolBar2: TToolBar
         Left = 1
         Top = 1
-        Width = 405
+        Width = 411
         Height = 40
         ButtonHeight = 40
         ButtonWidth = 40
         Caption = 'ToolBar1'
         Images = ImageList1
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
-        ExplicitWidth = 389
-        object ToolButton11: TToolButton
+        ExplicitWidth = 395
+        object Inserir2: TToolButton
           Left = 0
           Top = 0
+          Hint = 'Inserir'
           Action = DataSetInsert2
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton12: TToolButton
+        object Editar2: TToolButton
           Left = 40
           Top = 0
+          Hint = 'Editar'
           Action = DataSetEdit2
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton13: TToolButton
+        object Cancelar2: TToolButton
           Left = 80
           Top = 0
+          Hint = 'Cancelar'
           Action = DataSetCancel2
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton14: TToolButton
+        object Enviar2: TToolButton
           Left = 120
           Top = 0
+          Hint = 'Enviar'
           Action = DataSetPost2
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton15: TToolButton
+        object Deletar2: TToolButton
           Left = 160
           Top = 0
+          Hint = 'Deletar'
           Action = DataSetDelete2
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton16: TToolButton
+        object Inv: TToolButton
           Left = 200
           Top = 0
           Width = 40
           Caption = 'ToolButton5'
           ImageIndex = 4
+          ParentShowHint = False
+          ShowHint = True
           Style = tbsSeparator
         end
-        object ToolButton17: TToolButton
+        object Próximo: TToolButton
           Left = 240
           Top = 0
           Action = DataSetFirst2
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton18: TToolButton
+        object ToolButton1: TToolButton
           Left = 280
           Top = 0
           Action = DataSetPrior2
-          ParentShowHint = False
-          ShowHint = True
         end
-        object ToolButton19: TToolButton
+        object ToolButton2: TToolButton
           Left = 320
           Top = 0
           Action = DataSetNext2
-          ParentShowHint = False
-          ShowHint = True
         end
-        object ToolButton20: TToolButton
+        object ToolButton3: TToolButton
           Left = 360
           Top = 0
           Action = DataSetLast2
-          ParentShowHint = False
-          ShowHint = True
         end
       end
     end
     object DBGrid1: TDBGrid
       Left = 1
       Top = 130
-      Width = 407
-      Height = 219
+      Width = 413
+      Height = 232
       Align = alClient
       DataSource = DS_Valores
       FixedColor = clMedGray
@@ -305,7 +246,7 @@ inherited Frm_CadService: TFrm_CadService
         item
           Expanded = False
           FieldName = 'preco'
-          Width = 129
+          Width = 137
           Visible = True
         end>
     end

@@ -4,8 +4,8 @@ object Frm_Padrao: TFrm_Padrao
   BorderIcons = [biSystemMenu]
   BorderStyle = bsNone
   Caption = 'Sistema'
-  ClientHeight = 243
-  ClientWidth = 509
+  ClientHeight = 165
+  ClientWidth = 477
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object Frm_Padrao: TFrm_Padrao
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 509
+    Width = 477
     Height = 65
     Align = alTop
     Color = clSkyBlue
@@ -45,14 +45,14 @@ object Frm_Padrao: TFrm_Padrao
   object Panel2: TPanel
     Left = 0
     Top = 65
-    Width = 509
-    Height = 178
+    Width = 477
+    Height = 100
     Align = alClient
     TabOrder = 1
     object Panel3: TPanel
       Left = 1
-      Top = 136
-      Width = 507
+      Top = 58
+      Width = 475
       Height = 41
       Align = alBottom
       Color = clSkyBlue
@@ -61,96 +61,81 @@ object Frm_Padrao: TFrm_Padrao
       object ToolBar1: TToolBar
         Left = 1
         Top = 1
-        Width = 505
+        Width = 473
         Height = 29
+        ButtonHeight = 40
+        ButtonWidth = 40
         Caption = 'ToolBar1'
+        Images = ImageList1
         TabOrder = 0
-        object ToolButton7: TToolButton
+        object Inserir: TToolButton
           Left = 0
           Top = 0
-          Hint = 'Insert'
-          Caption = '&Insert'
-          ImageIndex = 4
+          Action = DatasetInsert1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton2: TToolButton
-          Left = 23
+        object Editar: TToolButton
+          Left = 40
           Top = 0
-          Hint = 'Edit'
-          Caption = '&Edit'
-          ImageIndex = 6
+          Action = DatasetEdit1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton3: TToolButton
-          Left = 46
+        object Cancelar: TToolButton
+          Left = 80
           Top = 0
-          Hint = 'Cancel'
-          Caption = '&Cancel'
-          ImageIndex = 8
+          Action = DatasetCancel1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton6: TToolButton
-          Left = 69
+        object Enviar: TToolButton
+          Left = 120
           Top = 0
-          Hint = 'Post'
-          Caption = 'P&ost'
-          ImageIndex = 7
+          Action = DatasetPost1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton4: TToolButton
-          Left = 92
+        object Deletar: TToolButton
+          Left = 160
           Top = 0
-          Hint = 'Delete'
-          Caption = '&Delete'
-          ImageIndex = 5
+          Action = DatasetDelete1
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton5: TToolButton
-          Left = 115
+          Left = 200
           Top = 0
-          Width = 31
+          Width = 40
           Caption = 'ToolButton5'
           ImageIndex = 4
           Style = tbsSeparator
         end
-        object ToolButton1: TToolButton
-          Left = 146
+        object Primeiro: TToolButton
+          Left = 240
           Top = 0
-          Hint = 'First'
-          Caption = '&First'
-          ImageIndex = 0
+          Action = DatasetFirst1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton8: TToolButton
-          Left = 169
+        object Anterior: TToolButton
+          Left = 280
           Top = 0
-          Hint = 'Prior'
-          Caption = '&Prior'
-          ImageIndex = 1
+          Action = DatasetPrior1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton9: TToolButton
-          Left = 192
+        object Proximo: TToolButton
+          Left = 320
           Top = 0
-          Hint = 'Next'
-          Caption = '&Next'
-          ImageIndex = 2
+          Action = DatasetNext1
           ParentShowHint = False
           ShowHint = True
         end
-        object ToolButton10: TToolButton
-          Left = 215
+        object Ultimo: TToolButton
+          Left = 360
           Top = 0
-          Hint = 'Last'
-          Caption = '&Last'
-          ImageIndex = 3
+          Action = DatasetLast1
           ParentShowHint = False
           ShowHint = True
         end
@@ -159,8 +144,8 @@ object Frm_Padrao: TFrm_Padrao
     object Panel4: TPanel
       Left = 1
       Top = 1
-      Width = 507
-      Height = 135
+      Width = 475
+      Height = 57
       Align = alClient
       Color = cl3DLight
       ParentBackground = False

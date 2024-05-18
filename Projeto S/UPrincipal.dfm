@@ -30,10 +30,6 @@ object Frm_Principal: TFrm_Principal
           Caption = 'Cadastro'
           OnClick = Cadastro1Click
         end
-        object Valores1: TMenuItem
-          Caption = 'Valores'
-          OnClick = Valores1Click
-        end
         object Grupos1: TMenuItem
           Caption = 'Grupos'
           OnClick = Grupos1Click

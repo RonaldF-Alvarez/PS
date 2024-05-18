@@ -8,6 +8,7 @@ object DM: TDM
     Top = 33
   end
   object FDQry_Contador: TFDQuery
+    Connection = FDConnection
     SQL.Strings = (
       'select'
       #9'cod,'

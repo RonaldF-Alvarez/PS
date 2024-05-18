@@ -1,0 +1,502 @@
+inherited Frm_CadClient: TFrm_CadClient
+  Caption = 'Cadastro de Clientes'
+  ClientHeight = 442
+  ClientWidth = 537
+  Position = poScreenCenter
+  ExplicitWidth = 537
+  ExplicitHeight = 442
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 537
+    Color = clGradientActiveCaption
+    ExplicitWidth = 508
+    inherited Label1: TLabel
+      Width = 73
+      Caption = 'Clientes'
+      ExplicitWidth = 73
+    end
+  end
+  inherited Panel2: TPanel
+    Width = 537
+    Height = 377
+    ExplicitWidth = 508
+    ExplicitHeight = 317
+    inherited Panel3: TPanel
+      Top = 336
+      Width = 535
+      Height = 40
+      ExplicitTop = 276
+      ExplicitWidth = 506
+      ExplicitHeight = 40
+      inherited ToolBar1: TToolBar
+        Width = 533
+        ExplicitWidth = 504
+        inherited ToolButton5: TToolButton
+          Width = 171
+          ExplicitWidth = 171
+        end
+        inherited Primeiro: TToolButton
+          Left = 371
+          ExplicitLeft = 371
+        end
+        inherited Anterior: TToolButton
+          Left = 411
+          ExplicitLeft = 411
+        end
+        inherited Proximo: TToolButton
+          Left = 451
+          ExplicitLeft = 451
+        end
+        inherited Ultimo: TToolButton
+          Left = 491
+          ExplicitLeft = 491
+        end
+      end
+    end
+    inherited Panel4: TPanel
+      Width = 535
+      Height = 335
+      ExplicitWidth = 506
+      ExplicitHeight = 275
+      object Label2: TLabel
+        Left = 49
+        Top = 37
+        Width = 27
+        Height = 13
+        Caption = 'Nome'
+      end
+      object Label3: TLabel
+        Left = 51
+        Top = 82
+        Width = 51
+        Height = 13
+        Caption = 'CPF/ CNPJ'
+      end
+      object Label4: TLabel
+        Left = 176
+        Top = 82
+        Width = 42
+        Height = 13
+        Caption = 'Telefone'
+      end
+      object Panel5: TPanel
+        Left = 1
+        Top = 175
+        Width = 533
+        Height = 159
+        Align = alBottom
+        TabOrder = 0
+        ExplicitTop = 115
+        ExplicitWidth = 504
+        object Label5: TLabel
+          Left = 51
+          Top = 26
+          Width = 45
+          Height = 13
+          Caption = 'Endere'#231'o'
+        end
+        object Label6: TLabel
+          Left = 51
+          Top = 66
+          Width = 65
+          Height = 13
+          Caption = 'Complemento'
+        end
+        object Label7: TLabel
+          Left = 383
+          Top = 66
+          Width = 19
+          Height = 13
+          Caption = 'CEP'
+        end
+        object Label8: TLabel
+          Left = 51
+          Top = 108
+          Width = 28
+          Height = 13
+          Caption = 'Bairro'
+        end
+        object Label9: TLabel
+          Left = 227
+          Top = 108
+          Width = 33
+          Height = 13
+          Caption = 'Cidade'
+        end
+        object Label10: TLabel
+          Left = 428
+          Top = 108
+          Width = 13
+          Height = 13
+          Caption = 'UF'
+        end
+        object Label11: TLabel
+          Left = 178
+          Top = 3
+          Width = 169
+          Height = 13
+          Caption = 'Adicionar Endere'#231'o do Contratante'
+        end
+        object DBEditEnd: TDBEdit
+          Left = 49
+          Top = 39
+          Width = 437
+          Height = 21
+          DataField = 'endereco'
+          DataSource = DS_CadEnd
+          TabOrder = 0
+        end
+        object DBEditEndComp: TDBEdit
+          Left = 50
+          Top = 81
+          Width = 327
+          Height = 21
+          DataField = 'complemento'
+          DataSource = DS_CadEnd
+          TabOrder = 1
+        end
+        object DBEditEndCEP: TDBEdit
+          Left = 381
+          Top = 81
+          Width = 105
+          Height = 21
+          DataField = 'cep'
+          DataSource = DS_CadEnd
+          TabOrder = 2
+        end
+        object DBEditEndBairro: TDBEdit
+          Left = 49
+          Top = 121
+          Width = 171
+          Height = 21
+          DataField = 'bairro'
+          DataSource = DS_CadEnd
+          TabOrder = 3
+        end
+        object DBEditEndCidade: TDBEdit
+          Left = 225
+          Top = 121
+          Width = 195
+          Height = 21
+          DataField = 'cidade'
+          DataSource = DS_CadEnd
+          TabOrder = 4
+        end
+        object DBEditEndUF: TDBEdit
+          Left = 425
+          Top = 121
+          Width = 61
+          Height = 21
+          DataField = 'uf'
+          DataSource = DS_CadEnd
+          TabOrder = 5
+        end
+        object DBEdit1: TDBEdit
+          Left = -6
+          Top = 134
+          Width = 7
+          Height = 21
+          DataField = 'cpf_cnpj'
+          DataSource = DS_CadEnd
+          TabOrder = 6
+          Visible = False
+        end
+      end
+      object DBEditNome: TDBEdit
+        Left = 50
+        Top = 56
+        Width = 437
+        Height = 21
+        DataField = 'nome'
+        DataSource = DS_Cad
+        TabOrder = 1
+      end
+      object DBEditCPF: TDBEdit
+        Left = 50
+        Top = 94
+        Width = 117
+        Height = 21
+        DataField = 'cpf_cnpj'
+        DataSource = DS_Cad
+        TabOrder = 2
+      end
+      object DBEditTelefone: TDBEdit
+        Left = 174
+        Top = 94
+        Width = 124
+        Height = 21
+        DataField = 'telefone'
+        DataSource = DS_Cad
+        TabOrder = 3
+      end
+      object Panel6: TPanel
+        Left = 1
+        Top = 135
+        Width = 533
+        Height = 40
+        Align = alBottom
+        Caption = 'Panel6'
+        TabOrder = 4
+        ExplicitTop = 75
+        ExplicitWidth = 504
+        object ToolBar2: TToolBar
+          Left = 1
+          Top = 1
+          Width = 531
+          Height = 31
+          ButtonHeight = 40
+          ButtonWidth = 40
+          Caption = 'pane'
+          Images = ImageList1
+          TabOrder = 0
+          ExplicitWidth = 502
+          object ToolButton11: TToolButton
+            Left = 0
+            Top = 0
+            Hint = 'Inserir'
+            Action = DatasetInsert1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton12: TToolButton
+            Left = 40
+            Top = 0
+            Action = DatasetEdit1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton13: TToolButton
+            Left = 80
+            Top = 0
+            Action = DatasetCancel1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton14: TToolButton
+            Left = 120
+            Top = 0
+            Hint = 'Enviar'
+            Action = DatasetPost1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton15: TToolButton
+            Left = 160
+            Top = 0
+            Hint = 'Deletar'
+            Action = DatasetDelete1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton16: TToolButton
+            Left = 200
+            Top = 0
+            Width = 170
+            Caption = 'ToolButton5'
+            ImageIndex = 4
+            Style = tbsSeparator
+          end
+          object ToolButton17: TToolButton
+            Left = 370
+            Top = 0
+            Hint = 'Primeiro'
+            Action = DatasetFirst1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton18: TToolButton
+            Left = 410
+            Top = 0
+            Hint = 'Anterior'
+            Action = DatasetPrior1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton19: TToolButton
+            Left = 450
+            Top = 0
+            Hint = 'Proximo'
+            Action = DatasetNext1
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object ToolButton20: TToolButton
+            Left = 490
+            Top = 0
+            Hint = 'Ultimo'
+            Action = DatasetLast1
+            ParentShowHint = False
+            ShowHint = True
+          end
+        end
+      end
+    end
+  end
+  inherited FDQry_Cadastro: TFDQuery
+    SQL.Strings = (
+      'select'
+      'cod,'
+      'nome,'
+      'cpf_cnpj, '
+      'telefone '
+      ''
+      ' from contratantes'
+      'ORDER BY COD')
+    object FDQry_Cadastrocod: TIntegerField
+      FieldName = 'cod'
+      Origin = 'cod'
+    end
+    object FDQry_Cadastronome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object FDQry_Cadastrocpf_cnpj: TWideStringField
+      FieldName = 'cpf_cnpj'
+      Origin = 'cpf_cnpj'
+      EditMask = '000\.000\.000\-##;0;_'
+      Size = 14
+    end
+    object FDQry_Cadastrotelefone: TWideStringField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      EditMask = '!\(99\)00000-0000;0;_'
+      Size = 11
+    end
+  end
+  inherited DS_Cad: TDataSource
+    OnDataChange = DS_CadDataChange
+  end
+  inherited ActionList1: TActionList
+    inherited DatasetFirst1: TDataSetFirst
+      DataSource = DS_Cad
+    end
+    inherited DatasetLast1: TDataSetLast [2]
+      DataSource = DS_Cad
+    end
+    inherited DatasetInsert1: TDataSetInsert [3]
+      DataSource = DS_Cad
+    end
+    inherited DatasetDelete1: TDataSetDelete [4]
+      DataSource = DS_Cad
+    end
+    inherited DatasetEdit1: TDataSetEdit [5]
+      DataSource = DS_Cad
+    end
+    inherited DatasetPost1: TDataSetPost [6]
+      DataSource = DS_Cad
+    end
+    inherited DatasetCancel1: TDataSetCancel [7]
+      DataSource = DS_Cad
+    end
+    inherited DatasetNext1: TDataSetNext [8]
+      DataSource = DS_Cad
+    end
+  end
+  object FDQry_Endereco: TFDQuery
+    AfterInsert = FDQry_EnderecoAfterInsert
+    AfterPost = FDQry_EnderecoAfterPost
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'select'
+      'cpf_cnpj,'
+      'endereco,'
+      'complemento, '
+      'cep, '
+      'bairro, '
+      'cidade, '
+      'uf'
+      'from contratantes_endereco'
+      'where cpf_cnpj = :cpf_cnpj'
+      'order by cpf_cnpj')
+    Left = 465
+    Top = 170
+    ParamData = <
+      item
+        Name = 'CPF_CNPJ'
+        DataType = ftString
+        FDDataType = dtAnsiString
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object DS_CadEnd: TDataSource
+    DataSet = FDQry_Endereco
+    Left = 393
+    Top = 178
+  end
+  object ActionList2: TActionList
+    Images = ImageList1
+    Left = 465
+    Top = 297
+    object DataSetFirst2: TDataSetFirst
+      Category = 'Dataset'
+      Caption = 'Primeiro'
+      Hint = 'First'
+      ImageIndex = 0
+      DataSource = DS_CadEnd
+    end
+    object DataSetPrior2: TDataSetPrior
+      Category = 'Dataset'
+      Caption = 'Anterior'
+      Hint = 'Prior'
+      ImageIndex = 1
+      DataSource = DS_CadEnd
+    end
+    object DataSetLast2: TDataSetLast
+      Category = 'Dataset'
+      Caption = 'Ultimo'
+      Hint = 'Last'
+      ImageIndex = 3
+      DataSource = DS_CadEnd
+    end
+    object DataSetInsert2: TDataSetInsert
+      Category = 'Dataset'
+      Caption = 'Inserir'
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = DS_CadEnd
+    end
+    object DataSetDelete2: TDataSetDelete
+      Category = 'Dataset'
+      Caption = 'Deletar'
+      Hint = 'Delete'
+      ImageIndex = 5
+      DataSource = DS_CadEnd
+    end
+    object DataSetEdit2: TDataSetEdit
+      Category = 'Dataset'
+      Caption = '&Editar'
+      Hint = 'Edit'
+      ImageIndex = 6
+      DataSource = DS_CadEnd
+    end
+    object DataSetPost2: TDataSetPost
+      Category = 'Dataset'
+      Caption = 'Enviar'
+      Hint = 'Post'
+      ImageIndex = 7
+      DataSource = DS_CadEnd
+    end
+    object DataSetCancel2: TDataSetCancel
+      Category = 'Dataset'
+      Caption = 'Cancelar'
+      Hint = 'Cancel'
+      ImageIndex = 8
+      DataSource = DS_CadEnd
+    end
+    object DataSetNext2: TDataSetNext
+      Category = 'Dataset'
+      Caption = 'Proximo'
+      Hint = 'Next'
+      ImageIndex = 2
+      DataSource = DS_CadEnd
+    end
+    object DataSetRefresh2: TDataSetRefresh
+      Category = 'Dataset'
+      Caption = '&Refresh'
+      Hint = 'Refresh'
+      ImageIndex = 10
+    end
+  end
+end

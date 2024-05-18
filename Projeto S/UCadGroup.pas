@@ -10,37 +10,80 @@ uses
   FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Vcl.StdCtrls, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids,
-  Datasnap.DBClient, Vcl.ComCtrls, Vcl.ExtCtrls;
+  Datasnap.DBClient, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.DBActns, System.Actions,
+  Vcl.ActnList, Vcl.ToolWin, System.ImageList, Vcl.ImgList, Vcl.Mask;
 
 type
   TFrm_CadGroup = class(TForm)
-    DataSource1: TDataSource;
-    FDQuery1: TFDQuery;
-    FDQuery2: TFDQuery;
-    DataSource2: TDataSource;
-    FDQuery3: TFDQuery;
-    ClientDataSet1: TClientDataSet;
+    FDQry_Grid: TFDQuery;
     Panel1: TPanel;
     Panel3: TPanel;
     Panel2: TPanel;
     DBGrid1: TDBGrid;
     GroupBox1: TGroupBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    BitBtn1: TBitBtn;
-    DBComboBox1: TDBLookupComboBox;
-    EditNomegrupo: TEdit;
-    Edit2: TEdit;
+    ImageList1: TImageList;
+    ToolBar1: TToolBar;
+    Inserir: TToolButton;
+    Editar: TToolButton;
+    Cancelar: TToolButton;
+    Enviar: TToolButton;
+    Deletar: TToolButton;
+    ToolButton5: TToolButton;
+    Primeiro: TToolButton;
+    Anterior: TToolButton;
+    Proximo: TToolButton;
+    Ultimo: TToolButton;
+    ActionList1: TActionList;
+    DatasetLast1: TDataSetLast;
+    DatasetNext1: TDataSetNext;
+    DatasetInsert1: TDataSetInsert;
+    DatasetDelete1: TDataSetDelete;
+    DatasetEdit1: TDataSetEdit;
+    DatasetPost1: TDataSetPost;
+    DatasetCancel1: TDataSetCancel;
+    DatasetFirst1: TDataSetFirst;
+    DatasetRefresh1: TDataSetRefresh;
+    DatasetPrior1: TDataSetPrior;
+    DBComboBox: TDBLookupComboBox;
+    DBEditGpNome: TDBEdit;
+    ToolBar2: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    DBEditGp: TDBEdit;
+    DS_Grupo: TDataSource;
+    FDQry_Grupo: TFDQuery;
+    DS_Grid: TDataSource;
+    ActionList2: TActionList;
+    DataSetLast2: TDataSetLast;
+    DataSetNext2: TDataSetNext;
+    DataSetInsert2: TDataSetInsert;
+    DataSetDelete2: TDataSetDelete;
+    DataSetEdit2: TDataSetEdit;
+    DataSetPost2: TDataSetPost;
+    DataSetCancel2: TDataSetCancel;
+    DataSetFirst2: TDataSetFirst;
+    DataSetRefresh2: TDataSetRefresh;
+    DataSetPrior2: TDataSetPrior;
+    ActionAdicionar: TAction;
+    DBEditIDSERV: TDBEdit;
+    FDQry_Serv: TFDQuery;
+    DS_Serv: TDataSource;
+    FDQry_GridIns: TFDQuery;
     procedure FormCreate(Sender: TObject);
+    procedure DS_GrupoDataChange(Sender: TObject; Field: TField);
+    procedure FDQry_GrupoAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn4Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
+    procedure FDQry_GrupoAfterPost(DataSet: TDataSet);
+    procedure ActionAdicionarExecute(Sender: TObject);
   private
-    TempData: TClientDataSet;
-    procedure AddToTempData(const Value1, Value2: string; ID: Integer);
-    procedure SaveTempDataToDatabase;
-    procedure GetIdMax;
     { Private declarations }
   public
     { Public declarations }
@@ -55,101 +98,71 @@ implementation
 
 uses UDM;
 
-procedure TFrm_CadGroup.FormCreate(Sender: TObject);
+procedure TFrm_CadGroup.FDQry_GrupoAfterInsert(DataSet: TDataSet);
 var
-  maxID: Integer;
+  resultado: Integer;
 begin
-  TempData := TClientDataSet.Create(Self);
-  TempData.FieldDefs.Add('descricao', ftString, 255);
-  TempData.FieldDefs.Add('id_servico', ftInteger);
-  TempData.FieldDefs.Add('ID', ftInteger);
-  TempData.CreateDataSet;
-
-  DataSource2.DataSet := TempData;
-  GetIdMax;
-  FDQuery1.Open;
+  resultado := DM.RetornaContador('grupo_servicos', 'id_grupo_serv');
+  DBEditGp.Text := IntToStr(resultado);
 end;
 
-procedure TFrm_CadGroup.GetIdMax;
-var
-  maxID: Integer;
+procedure TFrm_CadGroup.FDQry_GrupoAfterPost(DataSet: TDataSet);
 begin
-  FDQuery3.SQL.Clear;
-  FDQuery3.SQL.Text := 'SELECT MAX(id_grupo_serv) AS MaxID FROM grupo_servicos';
-  FDQuery3.Open;
-  try
-    if not FDQuery3.FieldByName('MaxID').IsNull then
-      maxID := FDQuery3.FieldByName('MaxID').AsInteger
-    else
-      maxID := 0;
-    Edit2.Text := IntToStr(maxID + 1);
-  finally
-    FDQuery3.Close;
-  end;
-end;
-
-procedure TFrm_CadGroup.AddToTempData(const Value1, Value2: string; ID: Integer);
-begin
-  TempData.Append;
-  TempData.FieldByName('descricao').AsString := Value1;
-  TempData.FieldByName('id_servico').AsString := inttostr(ID);
-  TempData.FieldByName('ID').AsInteger := strtoint(Value2);
-  TempData.Post;
-end;
-
-procedure TFrm_CadGroup.SaveTempDataToDatabase;
-begin
-  if EditNomegrupo.text= '' then
-    begin
-    MessageDlg('Por favor, insira o nome do grupo!', mtWarning, [mbOK], 0);
-    Exit;
-    end
-  else
-  begin
-    try
-    TempData.First;
-    while not TempData.Eof do
-      begin
-      FDQuery1.SQL.Text := 'INSERT INTO grupo_servicos (id_GRUPO_SERV, descricao, id_servico) VALUES (:id_GRUPO_SERV, :descricao, :id_servico)';
-      FDQuery1.ParamByName('id_servico').AsInteger := TempData.FieldByName('id_servico').AsInteger;
-      FDQuery1.ParamByName('descricao').AsString := TempData.FieldByName('descricao').AsString;
-      FDQuery1.ParamByName('id_grupo_serv').AsInteger := TempData.FieldByName('ID').AsInteger;
-      FDQuery1.ExecSQL;
-      TempData.Next;
-      end;
-    TempData.EmptyDataSet;
-    MessageDlg('Grupo Criado com sucesso!',mtInformation,[mbOk],0);
-    except
-      on E: Exception do
-    begin
-      MessageDlg('Erro ao enviar os dados: ' + E.Message, mtError, [mbOK], 0);
-    end;
-    end;
-  end;
-  end;
-
-procedure TFrm_CadGroup.BitBtn1Click(Sender: TObject);
-begin
-  AddToTempData(EditNomegrupo.Text, Edit2.Text, DBComboBox1.KeyValue);
-end;
-
-procedure TFrm_CadGroup.BitBtn3Click(Sender: TObject);
-begin
- TempData.ClearFields;
-end;
-
-procedure TFrm_CadGroup.BitBtn4Click(Sender: TObject);
-begin
-  SaveTempDataToDatabase;
+  FDQry_Grupo.Refresh;
 end;
 
 procedure TFrm_CadGroup.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  FDQuery1.Close;
-  FDQuery2.Close;
-  FDQuery3.Close;
   action := cafree;
   Frm_CadGroup:= nil;
+end;
+
+procedure TFrm_CadGroup.FormCreate(Sender: TObject);
+var
+  maxID: Integer;
+begin
+FDQry_Serv.Open;
+FDQry_Grupo.Open;
+FDQry_Grid.Open;
+FDQry_GridIns.Open;
+end;
+
+procedure TFrm_CadGroup.ActionAdicionarExecute(Sender: TObject);
+var
+  id_servico: string;
+  id_grupo_servico: string;
+begin
+//aqui vai ter a passagem pra tabela grupo_serv_servicos
+  if (DBComboBox.Text <> '') and (DBEditGpNome.Text <> '') then
+  begin
+    id_servico := DBEditIDSERV.Text;
+    id_grupo_servico := DBEditGp.Text;
+    FDQry_GridIns.SQL.Text := 'INSERT INTO grupo_serv_servicos (id_servico, id_grupo_servico) VALUES (:id_servico, :id_grupo_servico)';
+    FDQry_GridIns.ParamByName('id_servico').AsInteger := StrToInt(id_servico);
+    FDQry_GridIns.ParamByName('id_grupo_servico').AsInteger := StrToInt(id_grupo_servico);
+    FDQry_GridIns.ExecSQL;
+    FDQry_Grid.Open;
+    FDQry_Grid.Refresh;
+  end
+  else
+  begin
+    ShowMessage('Por favor, preencha todos os campos.');
+  end;
+end;
+
+procedure TFrm_CadGroup.DS_GrupoDataChange(Sender: TObject; Field: TField);
+var
+  id_grupo_servico : string;
+begin
+  inherited;
+  id_grupo_servico := '';
+  if FDQry_Grupo.FieldByName('id_grupo_serv').AsString <> '' then
+    id_grupo_servico := FDQry_Grupo.FieldByName('id_grupo_serv').AsString;
+  begin
+    FDQry_Grid.Close;
+    FDQry_Grid.ParamByName('id_grupo_servico').AsInteger := StrToInt(id_grupo_servico);
+    FDQry_Grid.Open;
+  end;
 end;
 
 end.
