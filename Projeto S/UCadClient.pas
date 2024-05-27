@@ -21,37 +21,10 @@ type
     FDQry_Cadastronome: TWideStringField;
     FDQry_Cadastrocpf_cnpj: TWideStringField;
     FDQry_Cadastrotelefone: TWideStringField;
-    Panel5: TPanel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
     FDQry_Endereco: TFDQuery;
-    DBEditEnd: TDBEdit;
-    DBEditEndComp: TDBEdit;
-    DBEditEndCEP: TDBEdit;
-    DBEditEndBairro: TDBEdit;
-    DBEditEndCidade: TDBEdit;
-    DBEditEndUF: TDBEdit;
-    DS_CadEnd: TDataSource;
     DBEditNome: TDBEdit;
     DBEditCPF: TDBEdit;
     DBEditTelefone: TDBEdit;
-    ToolBar2: TToolBar;
-    ToolButton11: TToolButton;
-    ToolButton12: TToolButton;
-    ToolButton13: TToolButton;
-    ToolButton14: TToolButton;
-    ToolButton15: TToolButton;
-    ToolButton16: TToolButton;
-    ToolButton17: TToolButton;
-    ToolButton18: TToolButton;
-    ToolButton19: TToolButton;
-    ToolButton20: TToolButton;
-    Panel6: TPanel;
     ActionList2: TActionList;
     DataSetFirst2: TDataSetFirst;
     DataSetPrior2: TDataSetPrior;
@@ -63,14 +36,40 @@ type
     DataSetCancel2: TDataSetCancel;
     DataSetNext2: TDataSetNext;
     DataSetRefresh2: TDataSetRefresh;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    DBEditEnd: TDBEdit;
+    DBEditEndComp: TDBEdit;
+    DBEditEndCEP: TDBEdit;
+    DBEditEndBairro: TDBEdit;
+    DBEditEndCidade: TDBEdit;
+    DBEditEndUF: TDBEdit;
     DBEdit1: TDBEdit;
+    DS_CadEnd: TDataSource;
+    FDQry_Enderecocpf_cnpj: TWideStringField;
+    FDQry_Enderecoendereco: TWideStringField;
+    FDQry_Enderecocomplemento: TWideStringField;
+    FDQry_Enderecocep: TWideStringField;
+    FDQry_Enderecobairro: TWideStringField;
+    FDQry_Enderecocidade: TWideStringField;
+    FDQry_Enderecouf: TWideStringField;
+    Label11: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DS_CadDataChange(Sender: TObject; Field: TField);
     procedure FDQry_EnderecoAfterPost(DataSet: TDataSet);
     procedure FDQry_EnderecoAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure FDQry_CadastroBeforeInsert(DataSet: TDataSet);
+    procedure DatasetInsert1Execute(Sender: TObject);
+    procedure DatasetPost1Execute(Sender: TObject);
   private
     { Private declarations }
   public
+
     { Public declarations }
     procedure Getcpf;
   end;
@@ -83,6 +82,18 @@ implementation
 {$R *.dfm}
 
 uses UDM;
+
+procedure TFrm_CadClient.DatasetInsert1Execute(Sender: TObject);
+begin
+  inherited;
+  DatasetInsert2.Execute;
+end;
+
+procedure TFrm_CadClient.DatasetPost1Execute(Sender: TObject);
+begin
+  inherited;
+  DatasetPost2.Execute;
+end;
 
 procedure TFrm_CadClient.DS_CadDataChange(Sender: TObject; Field: TField);
 var
@@ -97,6 +108,13 @@ begin
   FDQry_Endereco.ParamByName('cpf_cnpj').asString := cpf_cnpj;
   FDQry_Endereco.open;
 
+end;
+
+procedure TFrm_CadClient.FDQry_CadastroBeforeInsert(DataSet: TDataSet);
+var
+  resultado: Integer;
+begin
+//
 end;
 
 procedure TFrm_CadClient.FDQry_EnderecoAfterInsert(DataSet: TDataSet);
@@ -119,9 +137,16 @@ begin
   Frm_CadClient:= nil;
 end;
 
+procedure TFrm_CadClient.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDQry_Cadastro.Open;
+  FDQry_Endereco.Open;
+end;
+
 procedure TFrm_CadClient.Getcpf;
 begin
-  DBEdit1.Text := DBEditCPF.Text;
+  DS_CadDataChange(Self, nil);
 end;
 
 end.

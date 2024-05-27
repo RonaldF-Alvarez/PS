@@ -2,7 +2,7 @@ object Frm_CadGroup: TFrm_CadGroup
   Left = 0
   Top = 0
   Caption = 'Frm_CadGroup'
-  ClientHeight = 600
+  ClientHeight = 494
   ClientWidth = 440
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,45 +16,63 @@ object Frm_CadGroup: TFrm_CadGroup
   OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
-  object Panel1: TPanel
-    Left = 0
-    Top = 553
-    Width = 440
-    Height = 47
-    Align = alBottom
-    Caption = 'Panel1'
-    TabOrder = 0
-    ExplicitTop = 552
-    ExplicitWidth = 436
-  end
   object Panel3: TPanel
     Left = 0
     Top = 0
     Width = 440
     Height = 65
     Align = alTop
-    Caption = 'Panel3'
     Color = clGradientActiveCaption
     ParentBackground = False
-    TabOrder = 1
+    TabOrder = 0
     ExplicitWidth = 436
+    object Label1: TLabel
+      Left = 109
+      Top = 17
+      Width = 167
+      Height = 30
+      Caption = 'Grupo de Servi'#231'os'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 31
+      Top = 8
+      Width = 25
+      Height = 15
+      Caption = 'C'#243'd.'
+    end
+    object DBEditGp: TDBEdit
+      Left = 30
+      Top = 23
+      Width = 51
+      Height = 23
+      DataField = 'id_grupo_serv'
+      DataSource = DS_Grupo
+      ReadOnly = True
+      TabOrder = 0
+    end
   end
   object Panel2: TPanel
     Left = 0
     Top = 65
     Width = 440
-    Height = 488
+    Height = 429
     Align = alClient
     Caption = 'Panel2'
-    TabOrder = 2
+    TabOrder = 1
     ExplicitWidth = 436
-    ExplicitHeight = 487
+    ExplicitHeight = 428
     object DBGrid1: TDBGrid
       Left = 1
-      Top = 169
+      Top = 119
       Width = 438
-      Height = 278
-      Align = alClient
+      Height = 268
+      Align = alBottom
       DataSource = DS_Grid
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -66,11 +84,22 @@ object Frm_CadGroup: TFrm_CadGroup
         item
           Expanded = False
           FieldName = 'id_grupo_servico'
+          Title.Caption = 'C'#243'd. Grupo'
+          Width = 69
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'id_servico'
+          Title.Caption = 'C'#243'd. Servi'#231'o'
+          Width = 74
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Look_serv'
+          Title.Caption = 'Nome do Servi'#231'o'
+          Width = 255
           Visible = True
         end>
     end
@@ -78,510 +107,776 @@ object Frm_CadGroup: TFrm_CadGroup
       Left = 1
       Top = 1
       Width = 438
-      Height = 128
+      Height = 72
       Align = alTop
       Caption = 'Adicionar Dados'
       TabOrder = 1
       ExplicitWidth = 434
-      object DBComboBox: TDBLookupComboBox
-        Left = 79
-        Top = 75
-        Width = 333
-        Height = 23
-        KeyField = 'nome'
-        ListField = 'nome'
-        ListSource = DS_Serv
-        TabOrder = 0
+      object Label2: TLabel
+        Left = 30
+        Top = 19
+        Width = 88
+        Height = 15
+        Caption = 'Nome do grupo:'
       end
       object DBEditGpNome: TDBEdit
-        Left = 79
+        Left = 29
         Top = 32
-        Width = 333
+        Width = 380
         Height = 23
         DataField = 'descricao'
         DataSource = DS_Grupo
-        TabOrder = 1
-      end
-      object DBEditGp: TDBEdit
-        Left = 24
-        Top = 32
-        Width = 49
-        Height = 23
-        DataField = 'id_grupo_serv'
-        DataSource = DS_Grupo
-        TabOrder = 2
-      end
-      object DBEditIDSERV: TDBEdit
-        Left = 24
-        Top = 75
-        Width = 49
-        Height = 23
-        DataField = 'id'
-        DataSource = DS_Serv
-        TabOrder = 3
+        TabOrder = 0
       end
     end
-    object ToolBar1: TToolBar
+    object Panel1: TPanel
       Left = 1
-      Top = 129
+      Top = 387
       Width = 438
-      Height = 40
-      ButtonHeight = 40
-      ButtonWidth = 40
-      Caption = 'ToolBar1'
-      Color = clNone
-      Images = ImageList1
-      ParentColor = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 2
-      ExplicitWidth = 434
-      object Inserir: TToolButton
-        Left = 0
-        Top = 0
-        Action = DatasetInsert1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Editar: TToolButton
-        Left = 40
-        Top = 0
-        Action = DatasetEdit1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Cancelar: TToolButton
-        Left = 80
-        Top = 0
-        Action = DatasetCancel1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Enviar: TToolButton
-        Left = 120
-        Top = 0
-        Action = DatasetPost1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Deletar: TToolButton
-        Left = 160
-        Top = 0
-        Action = DatasetDelete1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton5: TToolButton
-        Left = 200
-        Top = 0
-        Width = 73
-        Hint = 'First'
-        Caption = '&First'
-        ImageIndex = 0
-        Style = tbsSeparator
-      end
-      object Primeiro: TToolButton
-        Left = 273
-        Top = 0
-        Action = DatasetFirst1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Anterior: TToolButton
-        Left = 313
-        Top = 0
-        Action = DatasetPrior1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Ultimo: TToolButton
-        Left = 353
-        Top = 0
-        Action = DatasetNext1
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object Proximo: TToolButton
-        Left = 393
-        Top = 0
-        Action = DatasetLast1
-        ParentShowHint = False
-        ShowHint = True
-      end
-    end
-    object ToolBar2: TToolBar
-      Left = 1
-      Top = 447
-      Width = 438
-      Height = 40
+      Height = 41
       Align = alBottom
-      ButtonHeight = 40
-      ButtonWidth = 40
-      Caption = 'ToolBar1'
-      Color = clNone
-      Images = ImageList1
-      ParentColor = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 3
-      ExplicitTop = 446
+      Caption = 'Panel1'
+      Color = clGradientActiveCaption
+      ParentBackground = False
+      TabOrder = 2
+      ExplicitTop = 386
       ExplicitWidth = 434
-      object ToolButton1: TToolButton
+      object ToolBar2: TToolBar
         Left = 0
-        Top = 0
-        Action = ActionAdicionar
+        Top = 1
+        Width = 542
+        Height = 40
+        Align = alNone
+        ButtonHeight = 40
+        ButtonWidth = 40
+        Caption = 'ToolBar1'
+        Color = clGradientActiveCaption
+        HotTrackColor = clGradientActiveCaption
+        Images = ImageList1
+        ParentColor = False
         ParentShowHint = False
         ShowHint = True
+        TabOrder = 0
+        object ToolButton1: TToolButton
+          Left = 0
+          Top = 0
+          Action = DataSetInsert2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton2: TToolButton
+          Left = 40
+          Top = 0
+          Action = DataSetEdit2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton3: TToolButton
+          Left = 80
+          Top = 0
+          Action = DataSetCancel2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton4: TToolButton
+          Left = 120
+          Top = 0
+          Action = DataSetPost2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton6: TToolButton
+          Left = 160
+          Top = 0
+          Action = DataSetDelete2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton7: TToolButton
+          Left = 200
+          Top = 0
+          Width = 73
+          Hint = 'First'
+          Caption = '&First'
+          ImageIndex = 0
+          Style = tbsSeparator
+        end
+        object ToolButton8: TToolButton
+          Left = 273
+          Top = 0
+          Action = DataSetFirst2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton9: TToolButton
+          Left = 313
+          Top = 0
+          Action = DataSetPrior2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton10: TToolButton
+          Left = 353
+          Top = 0
+          Action = DataSetNext2
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton11: TToolButton
+          Left = 393
+          Top = 0
+          Action = DataSetLast2
+          ParentShowHint = False
+          ShowHint = True
+        end
       end
-      object ToolButton2: TToolButton
-        Left = 40
-        Top = 0
-        Action = DataSetEdit2
+    end
+    object Panel4: TPanel
+      Left = 1
+      Top = 73
+      Width = 438
+      Height = 46
+      Align = alClient
+      Caption = 'Panel4'
+      TabOrder = 3
+      ExplicitWidth = 434
+      ExplicitHeight = 45
+      object ToolBar1: TToolBar
+        Left = 1
+        Top = 1
+        Width = 436
+        Height = 63
+        ButtonHeight = 40
+        ButtonWidth = 40
+        Caption = 'ToolBar1'
+        Color = clNone
+        Images = ImageList1
+        ParentColor = False
         ParentShowHint = False
         ShowHint = True
-      end
-      object ToolButton3: TToolButton
-        Left = 80
-        Top = 0
-        Action = DataSetCancel2
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton4: TToolButton
-        Left = 120
-        Top = 0
-        Action = DataSetPost2
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton6: TToolButton
-        Left = 160
-        Top = 0
-        Action = DataSetDelete2
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton7: TToolButton
-        Left = 200
-        Top = 0
-        Width = 73
-        Hint = 'First'
-        Caption = '&First'
-        ImageIndex = 0
-        Style = tbsSeparator
-      end
-      object ToolButton8: TToolButton
-        Left = 273
-        Top = 0
-        Action = DataSetFirst2
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton9: TToolButton
-        Left = 313
-        Top = 0
-        Action = DataSetPrior2
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton10: TToolButton
-        Left = 353
-        Top = 0
-        Action = DataSetNext2
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButton11: TToolButton
-        Left = 393
-        Top = 0
-        Action = DataSetLast2
-        ParentShowHint = False
-        ShowHint = True
+        TabOrder = 0
+        ExplicitWidth = 432
+        object Inserir: TToolButton
+          Left = 0
+          Top = 0
+          Action = DatasetInsert1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Editar: TToolButton
+          Left = 40
+          Top = 0
+          Action = DatasetEdit1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Cancelar: TToolButton
+          Left = 80
+          Top = 0
+          Action = DatasetCancel1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Enviar: TToolButton
+          Left = 120
+          Top = 0
+          Action = DatasetPost1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Deletar: TToolButton
+          Left = 160
+          Top = 0
+          Action = DatasetDelete1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton5: TToolButton
+          Left = 200
+          Top = 0
+          Width = 73
+          Hint = 'First'
+          Caption = '&First'
+          ImageIndex = 0
+          Style = tbsSeparator
+        end
+        object Primeiro: TToolButton
+          Left = 273
+          Top = 0
+          Action = DatasetFirst1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Anterior: TToolButton
+          Left = 313
+          Top = 0
+          Action = DatasetPrior1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Ultimo: TToolButton
+          Left = 353
+          Top = 0
+          Action = DatasetNext1
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Proximo: TToolButton
+          Left = 393
+          Top = 0
+          Action = DatasetLast1
+          ParentShowHint = False
+          ShowHint = True
+        end
       end
     end
   end
   object FDQry_Grid: TFDQuery
+    AfterInsert = FDQry_GridAfterInsert
+    AfterPost = FDQry_GridAfterPost
     Connection = DM.FDConnection
     SQL.Strings = (
       'select'
-      'id_grupo_servico,'
-      'id_servico'
-      'from grupo_serv_servicos'
-      'where id_grupo_servico = :id_grupo_servico'
-      '')
-    Left = 360
+      'SG.id_grupo_servico,'
+      'SG.id_servico,'
+      'S.nome as nome_servico'
+      'from grupo_serv_servicos as SG'
+      'inner join servicos as S'
+      'on(SG.id_servico=S.id)'
+      'where id_grupo_servico = :id_grupo_servico')
+    Left = 328
     Top = 240
     ParamData = <
       item
         Name = 'ID_GRUPO_SERVICO'
         DataType = ftInteger
         FDDataType = dtInt64
-        ParamType = ptInputOutput
+        ParamType = ptInput
         Value = Null
       end>
+    object FDQry_Gridid_grupo_servico: TIntegerField
+      FieldName = 'id_grupo_servico'
+      Origin = 'id_grupo_servico'
+    end
+    object FDQry_Gridid_servico: TIntegerField
+      FieldName = 'id_servico'
+      Origin = 'id_servico'
+    end
+    object FDQry_Gridnome_servico: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome_servico'
+      Origin = 'nome_servico'
+      Size = 50
+    end
+    object FDQry_GridLook_serv: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Look_serv'
+      LookupDataSet = FDQry_look_serv
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'id_servico'
+      Lookup = True
+    end
+  end
+  object ActionList1: TActionList
+    Images = ImageList1
+    Left = 193
+    Top = 18
+    object DatasetLast1: TDataSetLast
+      Category = 'Dataset'
+      Caption = 'Ultimo'
+      Hint = 'Last'
+      ImageIndex = 3
+      DataSource = DS_Grupo
+    end
+    object DatasetNext1: TDataSetNext
+      Category = 'Dataset'
+      Caption = 'Proximo'
+      Hint = 'Next'
+      ImageIndex = 2
+      DataSource = DS_Grupo
+    end
+    object DatasetInsert1: TDataSetInsert
+      Category = 'Dataset'
+      Caption = 'Inserir'
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = DS_Grupo
+    end
+    object DatasetDelete1: TDataSetDelete
+      Category = 'Dataset'
+      Caption = 'Deletar'
+      Hint = 'Delete'
+      ImageIndex = 5
+      DataSource = DS_Grupo
+    end
+    object DatasetEdit1: TDataSetEdit
+      Category = 'Dataset'
+      Caption = '&Editar'
+      Hint = 'Edit'
+      ImageIndex = 6
+      DataSource = DS_Grupo
+    end
+    object DatasetPost1: TDataSetPost
+      Category = 'Dataset'
+      Caption = 'Enviar'
+      Hint = 'Post'
+      ImageIndex = 7
+      DataSource = DS_Grupo
+    end
+    object DatasetCancel1: TDataSetCancel
+      Category = 'Dataset'
+      Caption = 'Cancelar'
+      Hint = 'Cancel'
+      ImageIndex = 8
+      DataSource = DS_Grupo
+    end
+    object DatasetFirst1: TDataSetFirst
+      Category = 'Dataset'
+      Caption = 'Primeiro'
+      Hint = 'First'
+      ImageIndex = 0
+      DataSource = DS_Grupo
+    end
+    object DatasetRefresh1: TDataSetRefresh
+      Category = 'Dataset'
+      Caption = '&Refresh'
+      Hint = 'Refresh'
+      ImageIndex = 10
+      DataSource = DS_Grupo
+    end
+    object DatasetPrior1: TDataSetPrior
+      Category = 'Dataset'
+      Caption = 'Anterior'
+      Hint = 'Prior'
+      ImageIndex = 1
+      DataSource = DS_Grupo
+    end
+  end
+  object DS_Grupo: TDataSource
+    DataSet = FDQry_Grupo
+    OnDataChange = DS_GrupoDataChange
+    Left = 400
+    Top = 8
+  end
+  object FDQry_Grupo: TFDQuery
+    AfterInsert = FDQry_GrupoAfterInsert
+    AfterPost = FDQry_GrupoAfterPost
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  id,'
+      '  id_grupo_serv,'
+      '  descricao'
+      'from grupo_servicos')
+    Left = 305
+    Top = 2
+    object FDQry_Grupoid: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQry_Grupoid_grupo_serv: TIntegerField
+      FieldName = 'id_grupo_serv'
+      Origin = 'id_grupo_serv'
+    end
+    object FDQry_Grupodescricao: TWideStringField
+      FieldName = 'descricao'
+      Origin = 'descricao'
+      FixedChar = True
+      Size = 255
+    end
+  end
+  object DS_Grid: TDataSource
+    DataSet = FDQry_Grid
+    OnDataChange = DS_GridDataChange
+    Left = 392
+    Top = 241
+  end
+  object ActionList2: TActionList
+    Left = 249
+    Top = 338
+    object DataSetLast2: TDataSetLast
+      Category = 'Dataset'
+      Caption = 'Ultimo'
+      Hint = 'Last'
+      ImageIndex = 3
+      DataSource = DS_Grid
+    end
+    object DataSetNext2: TDataSetNext
+      Category = 'Dataset'
+      Caption = 'Proximo'
+      Hint = 'Next'
+      ImageIndex = 2
+      DataSource = DS_Grid
+    end
+    object DataSetInsert2: TDataSetInsert
+      Category = 'Dataset'
+      Caption = 'Inserir'
+      Hint = 'Insert'
+      ImageIndex = 4
+      DataSource = DS_Grid
+    end
+    object DataSetDelete2: TDataSetDelete
+      Category = 'Dataset'
+      Caption = 'Deletar'
+      Hint = 'Delete'
+      ImageIndex = 5
+      DataSource = DS_Grid
+    end
+    object DataSetEdit2: TDataSetEdit
+      Category = 'Dataset'
+      Caption = '&Editar'
+      Hint = 'Edit'
+      ImageIndex = 6
+      DataSource = DS_Grid
+    end
+    object DataSetPost2: TDataSetPost
+      Category = 'Dataset'
+      Caption = 'Enviar'
+      Hint = 'Post'
+      ImageIndex = 7
+      DataSource = DS_Grid
+    end
+    object DataSetCancel2: TDataSetCancel
+      Category = 'Dataset'
+      Caption = 'Cancelar'
+      Hint = 'Cancel'
+      ImageIndex = 8
+      DataSource = DS_Grid
+    end
+    object DataSetFirst2: TDataSetFirst
+      Category = 'Dataset'
+      Caption = 'Primeiro'
+      Hint = 'First'
+      ImageIndex = 0
+      DataSource = DS_Grid
+    end
+    object DataSetRefresh2: TDataSetRefresh
+      Category = 'Dataset'
+      Caption = '&Refresh'
+      Hint = 'Refresh'
+      ImageIndex = 10
+      DataSource = DS_Grid
+    end
+    object DataSetPrior2: TDataSetPrior
+      Category = 'Dataset'
+      Caption = 'Anterior'
+      Hint = 'Prior'
+      ImageIndex = 1
+      DataSource = DS_Grid
+    end
+    object ActionAdicionar: TAction
+      Caption = 'ActionADD'
+      ImageIndex = 4
+    end
+  end
+  object FDQry_Serv: TFDQuery
+    Active = True
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'SELECT id, nome, descricao FROM servicos')
+    Left = 257
+    Top = 2
+  end
+  object DS_Serv: TDataSource
+    DataSet = FDQry_Serv
+    Left = 352
+    Top = 8
+  end
+  object FDQry_look_serv: TFDQuery
+    BeforeOpen = FDQry_look_servBeforeOpen
+    MasterSource = DS_Grupo
+    MasterFields = 'id_grupo_serv'
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'select s.id, s.nome from servicos S'
+      
+        'where s.id not in (select id_servico from grupo_serv_servicos as' +
+        ' GSS where id_grupo_servico = :id_grupo_servico)')
+    Left = 184
+    Top = 265
+    ParamData = <
+      item
+        Name = 'ID_GRUPO_SERVICO'
+        DataType = ftInteger
+        FDDataType = dtInt64
+        ParamType = ptInput
+        Value = Null
+      end>
+    object FDQry_look_servid: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQry_look_servnome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
   end
   object ImageList1: TImageList
-    Left = 209
-    Top = 200
+    Left = 233
+    Top = 144
     Bitmap = {
       494C010109001800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
-      00000000000000000000000000000000000000000060000000E2000000F50000
-      008E0000000A0000000000000000000000000000000000000000000000000000
-      000A0000008E000000F6000000E30000005F0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000E3000000FF000000FF0000
-      00FA000000880000000900000000000000000000000000000000000000090000
-      0088000000FA000000FF000000FF000000E10000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000F7000000FF000000FF0000
-      00FF000000FB00000089000000090000000000000000000000090000008A0000
-      00FB000000FF000000FF000000FF000000F60000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000090000000FA000000FF0000
-      00FF000000FF000000FB0000008900000008000000080000008A000000FC0000
-      00FF000000FF000000FF000000FA0000008E0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000008279B0007C71
+      B000000000000000000000000000000000000000000000000000000000000000
+      00007C71B0008279B00000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000B0000008A000000FC0000
-      00FF000000FF000000FF000000FB0000008D0000008E000000FB000000FF0000
-      00FF000000FF000000FC000000880000000A0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000007C71B0006151
+      CC007C71B0000000000000000000000000000000000000000000000000007C71
+      B0006151CC007C71B00000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000090000008B0000
-      00FC000000FF000000FF000000FF000000FE000000FE000000FF000000FF0000
-      00FF000000FC0000008A00000009000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000007D72
+      B1006050C9007A71AF00000000000000000000000000000000007D72B3006151
+      CC007C71B0000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000090000
-      008B000000FB000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FB0000008A0000000900000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00007C71B0005C4DBE007A71AF0000000000000000007B71AF005D4EC2007C71
+      B200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00080000008E000000FE000000FF000000FF000000FF000000FF000000FE0000
-      008E000000080000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      0000000000007C71B0005C4DBE00766CAD00776DAD005C4DBE007B71B0000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00080000008D000000FE000000FF000000FF000000FF000000FF000000FE0000
-      008D000000080000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000786CAD005D4DBF005D4DBF00766CAD00000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000090000
-      008A000000FB000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FB000000890000000900000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000090000008A0000
-      00FC000000FF000000FF000000FF000000FE000000FE000000FF000000FF0000
-      00FF000000FB0000008900000009000000000000000000000000000000000000
+      00000000000000000000776DAD005D4DBF005D4DBF00766CAD00000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000B00000089000000FC0000
-      00FF000000FF000000FF000000FB0000008D0000008E000000FB000000FF0000
-      00FF000000FF000000FB000000880000000A0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      0000000000007B71AF005C4DBE00766CAD00776CAD005C4DBE007A71AF000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000090000000FA000000FF0000
-      00FF000000FF000000FC0000008A00000008000000080000008B000000FC0000
-      00FF000000FF000000FF000000FA0000008E0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+      00007D72B3005D4EC2007A71AF0000000000000000007C71B0005C4DBE007A71
+      AF00000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000F7000000FF000000FF0000
-      00FF000000FC0000008A000000090000000000000000000000090000008B0000
-      00FC000000FF000000FF000000FF000000F60000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000E2000000FF000000FF0000
-      00FA000000890000000900000000000000000000000000000000000000090000
-      008A000000FA000000FF000000FF000000E30000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000060000000E3000000F60000
-      00900000000B0000000000000000000000000000000000000000000000000000
-      000B00000090000000F7000000E2000000600000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000010000005E000000E2000000E20000005E000000010000
-      0000000000000000000000000000000000000000000000000000000000370000
-      00F2000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000F200000037000000000000000000000006000000480000005D0000
-      0040000000160000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000014000000B7000000F70000
-      00A50000002D0000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000013000000C8000000FF000000FF000000C8000000130000
-      0000000000000000000000000000000000000000000000000000000000370000
-      00F2000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000F200000037000000000000000000000048000000E9000000FA0000
-      00F1000000C20000003500000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000040000000F0000000FF0000
-      00FF000000DB0000007300000015000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000001C000000E3000000FF000000FF000000E30000001C0000
-      0000000000000000000000000000000000000000000000000000000000370000
-      00F2000000FF000000FC000000FE000000FD000000FD000000FE000000FC0000
-      00FF000000F20000003700000000000000000000005D000000FA000000FF0000
-      00FF000000FF000000D300000036000000000000000000000000000000000000
-      0000000000000000000000000000000000000000004A000000F5000000FF0000
-      00FF000000FF000000FE000000C7000000560000000900000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000001C000000E3000000FF000000FF000000E30000001C0000
-      0000000000000000000000000000000000000000000000000000000000370000
-      00F2000000F800000085000000DD000000AC000000AC000000DD000000850000
-      00F8000000F200000037000000000000000000000040000000F1000000FF0000
-      00FF000000FF000000FF000000D3000000360000000000000000000000000000
-      0000000000000000000000000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000F7000000AD0000003C000000010000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000001A000000E3000000FF000000FF000000E30000001A0000
-      0000000000000000000000000000000000000000000000000000000000370000
-      00F3000000F40000004A000000CC0000008500000085000000CC0000004A0000
-      00F4000000F300000037000000000000000000000016000000C2000000FF0000
-      00FF000000FF000000FF000000FF000000D30000003600000000000000000000
-      0000000000000000000000000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000EC000000900000
-      00250000000000000000000000000000000000000001000000130000001C0000
-      001C0000001A00000035000000E6000000FF000000FF000000E6000000350000
-      001A0000001C0000001C00000013000000010000000000000000000000370000
-      00F3000000F50000004D000000CD0000008700000087000000CD0000004D0000
-      00F5000000F30000003700000000000000000000000000000035000000D30000
-      00FF000000FF000000FF000000FF000000FF000000D300000036000000000000
-      0000000000000000000000000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00DB000000710000001400000000000000000000005E000000C8000000E30000
-      00E3000000E3000000E6000000FC000000FF000000FF000000FC000000E60000
-      00E3000000E3000000E3000000C80000005E0000000000000000000000370000
-      00F3000000F40000004C000000CD0000008600000086000000CD0000004C0000
-      00F4000000F30000003700000000000000000000000000000000000000360000
-      00D3000000FF000000FF000000FF000000FF000000FF000000D3000000360000
-      0000000000000000000000000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FE000000C50000004900000001000000E2000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000E20000000000000000000000370000
-      00F3000000F600000060000000D20000009300000093000000D2000000600000
-      00F6000000F30000003700000000000000000000000000000000000000000000
-      0036000000D3000000FF000000FF000000FF000000FF000000FF000000D30000
-      0036000000000000000000000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000DF0000002E000000E2000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000FF000000E20000000000000000000000370000
-      00F2000000FE000000E6000000F8000000EE000000EE000000F8000000E60000
-      00FE000000F20000003700000000000000000000000000000000000000000000
-      000000000036000000D3000000FF000000FF000000FF000000FF000000FF0000
-      00D3000000260000000000000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FF000000FF000000DF0000002E0000005E000000C8000000E30000
-      00E3000000E3000000E6000000FC000000FF000000FF000000FC000000E60000
-      00E3000000E3000000E3000000C80000005E0000000000000000000000370000
-      00F2000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000F20000003700000000000000000000000000000000000000000000
-      00000000000000000036000000D3000000FF000000FF000000FF000000FF0000
-      00B1000000330000002600000000000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00FF000000FE000000C5000000490000000100000001000000130000001C0000
-      001C0000001A00000035000000E6000000FF000000FF000000E6000000350000
-      001A0000001C0000001C00000013000000010000000000000000000000370000
-      00F0000000FD000000FD000000FD000000FD000000FD000000FD000000FD0000
-      00FD000000F00000003700000000000000000000000000000000000000000000
-      0000000000000000000000000036000000D3000000FF000000FF000000AF0000
-      0035000000B0000000D300000036000000000000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-      00DB000000710000001400000000000000000000000000000000000000000000
-      0000000000000000001A000000E3000000FF000000FF000000E30000001A0000
-      0000000000000000000000000000000000000000000000000000000000180000
-      00570000005C0000005C0000005C0000005C0000005C0000005C0000005C0000
-      005C000000570000001800000000000000000000000000000000000000000000
-      000000000000000000000000000000000036000000D3000000B1000000350000
-      00AF000000FF000000FF000000CF0000002B0000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000FF000000FF000000EC000000900000
-      0025000000000000000000000000000000000000000000000000000000000000
-      0000000000000000001C000000E3000000FF000000FF000000E30000001C0000
-      0000000000000000000000000000000000000000000000000028000000A90000
-      00B3000000B2000000B2000000B2000000B2000000B2000000B2000000B20000
-      00B2000000B3000000A900000028000000000000000000000000000000000000
-      0000000000000000000000000000000000000000002600000033000000B00000
-      00FF000000FF000000FF000000FF000000760000004A000000F4000000FF0000
-      00FF000000FF000000FF000000FF000000F7000000AD0000003C000000010000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000001C000000E3000000FF000000FF000000E30000001C0000
-      0000000000000000000000000000000000000000001B000000A9000000EF0000
-      00F3000000F3000000F9000000FC000000F2000000F2000000FC000000F90000
-      00F3000000F3000000EF000000A90000001B0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000026000000D30000
-      00FF000000FF000000FF000000E2000000420000004A000000F5000000FF0000
-      00FF000000FF000000FE000000C7000000560000000900000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000013000000C8000000FF000000FF000000C8000000130000
-      000000000000000000000000000000000000000000080000002F000000320000
-      00320000002E0000007F000000B30000004900000049000000B30000007F0000
-      002E00000032000000320000002F000000080000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000360000
-      00D0000000FF000000E20000004E0000000000000040000000F0000000FF0000
-      00FF000000DB0000007300000015000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000010000005E000000E2000000E20000005E000000010000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000005B000000EA000000CE000000CE000000EA0000005B0000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      002F000000780000003F000000000000000000000014000000B7000000F70000
-      00A50000002D0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000007D72
+      B0006151CC007C71B300000000000000000000000000000000007C71B0006050
+      C9007C71B0000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000007C71B0006151
+      CC007C71B1000000000000000000000000000000000000000000000000007C71
+      B0006151CC007C71B00000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000008279B0007C71
+      B000000000000000000000000000000000000000000000000000000000000000
+      00007C71B0008279B00000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000342F2500322C23003834270038342700322C2300342F25000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000004C4641214C443C2C000000015087
+      A3004278940044789500478EAC00000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000035302500332C240D3936282939362829322C240D353025000000
+      00000000000000000000000000000000000000000000C0C0FD005454FA005353
+      FA005353FA005252FA005353FA005353FA005353FA005353FA005252FA005353
+      FA005353FA005454FA00C0C0FD00000000004C443D2B4E433AC1566972964E88
+      A73B36617D074C94B2004FA0BE00478DAB000000000000000000000000000000
+      000000000000000000000000000000000000000000003835270039362800677C
+      450076944E0075924E0075924E0075924E0075924E0075924E0075924E007694
+      4E00677C45003936280038352700000000000000000000000000000000000000
+      000000000000657944004F58366276944FEB76944FEB4F583662657944000000
+      00000000000000000000000000000000000000000000C0C0FD005353FA005252
+      FA007A7AFB00C0C0FD007A7AFB005252FA005252FA007A7AFB00C0C0FD007A7A
+      FB005252FA005353FA00C0C0FD0000000000000000015669729577B3D3FF6FB4
+      D8F1559FBD994294B3134D9FBD004FA1BF00469BBB0000000000000000000000
+      00000000000000000000000000000000000000000000332D2400332D24154F59
+      366A5A693D755A683C755A683C755A683C755A683C755A683C755A683C755A69
+      3D754F59366A332D2415332D2400000000000000000000000000000000000000
+      00000000000076944E0058653B738CB55CFF8CB55CFF58653B7376944E000000
+      00000000000000000000000000000000000000000000C0C0FD005353FA005252
+      FA009191FC00000000009191FC005252FA005252FA009191FC00000000009191
+      FC005252FA005353FA00C0C0FD00000000005086A3004E88A73A6FB4D8F076C4
+      E3FF88D5EBFF6DBCD5A0388CAD104DA0BE004FA1BF00479CBB00000000000000
+      000000000000000000000000000000000000000000003C3A2A0040412C326E87
+      49EF667B44DB637742D4637742D5637743D3637743D4647843D2647843D0667C
+      44DB6E8749F040412C323C3A2A00000000000000000000000000000000000000
+      00000000000075924E0057643B728BB35CFF8BB35CFF57643B7275924E000000
+      00000000000000000000000000000000000000000000C0C0FD005353FA005252
+      FA009191FC00000000009191FC005252FA005252FA009191FC00000000009191
+      FC005252FA005353FA00C0C0FD00000000004279950034607C06559FBE9788D6
+      EBFFA5F0FFFF96E2F5FF6DBCD69E388CAE104DA0BE004FA1BF00479CBB000000
+      000000000000000000000000000000000000000000003937280040412C2E5D6D
+      3ED33936284A24161A2924171B2A25181B3E25181B3E23141A232212191F3733
+      274358663BC23E3E2B2A3835270000000000342F250035302500657944007694
+      4E0075924E0075924E0056623A6F8BB35BFF8BB35BFF56623A6F75924E007592
+      4E0076944E006579440035302500342F250000000000C0C0FD005353FA005252
+      FA009191FC00000000009191FC005252FA005252FA009191FC00000000009191
+      FC005252FA005353FA00C0C0FD0000000000447995004C94B2004195B4126DBC
+      D69E96E2F5FFA5F0FFFF96E2F5FF6DBDD69E388DAE104EA0BE004FA1BF004799
+      BB0000000000000000000000000000000000000000002E262100302822093733
+      262B312B23093A37280030282219637642AC637742AD3029221A3B3A29002B21
+      1F042A201F162B201F052B201F0000000000322C2300332C240D4F5836625865
+      3B7357643B7256623A6F5E6F3FB18CB65DFF8CB65DFF5E6F3FB156623A6F5764
+      3B7258653B734F583662322C240D322C230000000000C0C0FD005353FA005252
+      FA009191FC00000000009191FC005252FA005252FA009191FC00000000009191
+      FC005252FA005353FA00C0C0FD0000000000468FAC004EA0BE004D9FBD00378B
+      AD106CBCD69C96E2F5FFA5F0FFFF96E2F5FF6DBDD69E388CAE104EA0BE004FA1
+      BF004799BB00000000000000000000000000000000002E262100302822003631
+      260041422D00312B231E677D45B48BB45CFF8BB45CFF677D45B5322C231E4245
+      2E002C2220002C221F002C221F0000000000383427003936282976944FEB8CB5
+      5CFF8BB35CFF8BB35BFF8CB65DFF92BD60FF92BD60FF8CB55CFF8AB35BFF8AB2
+      5BFF8CB45CFF76944FEB393628293834270000000000C0C0FD005353FA005252
+      FA009191FC00000000009191FC005252FA005252FA009191FC00000000009191
+      FC005252FA005353FA00C0C0FD0000000000000000004693B0004EA1BF004DA0
+      BE00378BAD106CBCD69C96E2F5FFA5F0FFFF96E2F5FF6DBDD69D378CAE104DA0
+      BE004FA1BF00489CBA0000000000000000000000000000000000000000003936
+      2800312A231D677D45BB799950FA76944FF776944FF77A9951FA677D45BC312A
+      231D39362800000000000000000000000000383427003936282976944FEB8CB5
+      5CFF8BB35CFF8BB35BFF8CB65DFF92BD60FF85AA58FF7D9F53FF81A455FF7D9E
+      53FF82A656FF738E4CEB3A3828293834270000000000C0C0FD005353FA005252
+      FA009191FC00000000009191FC005252FA005252FA009191FC00000000009191
+      FC005252FA005353FA00C0C0FD000000000000000000000000004699B8004EA1
+      BF004DA0BE00378BAD106CBCD69C96E2F5FFA5F0FFFF96E2F5FF6DBCD69D378C
+      AE104DA0BE004FA1BF00499AB900000000000000000000000000000000003A37
+      280037342625607241BF505A377E6A8147C96A8147C9505A367E607241BF3734
+      262539372800000000000000000000000000322C2400332D240D4F5836625865
+      3B7357643B7256623A6F5E6F3FB18CB55CFF7D9E53FF5A693DB1545F396F545F
+      397255613A734E573562332D240D322C230000000000C0C0FD005353FA005252
+      FA009393FC00000000009393FC005252FA005252FA009393FC00000000009393
+      FC005252FA005353FA00C0C0FD0000000000000000000000000000000000499B
+      B9004EA1BF004DA0BE00378BAD106CBCD69C96E2F5FFA5F0FFFF96E2F5FF6DBC
+      D69D338FB51070969E00938E81009C8979000000000000000000000000006C82
+      4700535C3700221319120000040D6E8749C36E8749C30000040D22131912555F
+      38006F874800000000000000000000000000342F250035302500657A44007694
+      4E0075924E0075924E0056623A6F8AB25BFF7C9D52FF525D386F74914D007491
+      4D0075924E006579430035302500342F250000000000C0C0FD005353FA005252
+      FA005B5BFA006969FB005B5BFA005252FA005252FA005B5BFA006969FB005B5B
+      FA005252FA005353FA00C0C0FD00000000000000000000000000000000000000
+      0000499BB9004EA1BF004DA0BE00378BAD106CBCD69C96E2F5FFA5F0FFFF96E3
+      F6FF73B6CA9E77786E11918E8600A08F81000000000000000000000000002A21
+      1F00271C1D002D242000000001096E8649C46E8649C4000001092D242000261B
+      1D002A201F000000000000000000000000000000000000000000000000000000
+      00000000000075924E0057643B728AB25BFF7C9D52FF545F397274914D000000
+      00000000000000000000000000000000000000000000D7D7FE009292FC009191
+      FC009191FC009191FC009191FC009191FC009191FC009191FC009191FC009191
+      FC009191FC009292FC00D7D7FE00000000000000000000000000000000000000
+      0000000000004899BB004FA1BF004DA0BE00378CAD106CBCD69D96E3F6FFA3E3
+      EFFFB6C0BAFFBDAE9D9F9C896E11776FA5000000000000000000000000000000
+      0000000000002B211F00000003096E8649C46E8649C4000003092B211F000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000076944E0058653B738BB45CFF7E9F53FF5460397375924E000000
+      00000000000000000000000000000000000000000000FEFEFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FEFEFF00000000000000000000000000000000000000
+      000000000000000000004899BB004FA1BF004DA0BE00328FB41073B6C99DB6C0
+      BAFFF0E1D2FFE2D4C4FF978B9F9D3637CA110000000000000000000000000000
+      0000000000002B211F00000003096D8649C76D8649C7000003092B211F000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000657A44004F58366276944FEB728D4CEB4E563562657943000000
+      000000000000000000000000000000000000FEFEFF005252FA005252FA005252
+      FA005252FA005252FA005252FA005252FA005252FA005252FA005252FA005252
+      FA005252FA005252FA005252FA00FEFEFF000000000000000000000000000000
+      0000000000000000000000000000479AB7004FA1BF0070969D0077776D11BDAE
+      9E9EE2D4C4FFBCB1BFFF8481DCFB5353D3600000000000000000000000000000
+      0000000000002B211F000E000D065460398C5460398C0E000D062B211F000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000035302500332D240D393628293A382929332D240D353025000000
+      00000000000000000000000000000000000000000000E7E7FE00E8E8FE00E8E8
+      FE00EAEAFE00A6A6FC006C6CFB005353FA005353FA006A6AFB00A3A3FC00EAEA
+      FE00E8E8FE00E8E8FE00E7E7FE00000000000000000000000000000000000000
+      000000000000000000000000000000000000479AB700938E8100918D86009B88
+      6F11978BA09D8481DCFB7676E9EA5050CF4C0000000000000000000000000000
+      0000000000002A201F0057643B00000000040000000459653C002B201F000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000342F2500322C24003834270038342700322C2300342F25000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000009A8979009F8F8200776F
+      A5003637CA115353D3605050CF4C3636BF060000000000000000000000000000
+      0000000000002A201F002A201F002B211F002B211F002B201F002B201F000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000040000000DE000000DA0000002C000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -712,219 +1007,19 @@ object Frm_CadGroup: TFrm_CadGroup
       000000000000000000000000002C000000DA000000DD00000040000000000000
       000000000000000000000000000000000000424D3E000000000000003E000000
       2800000040000000300000000100010000000000800100000000000000000000
-      000000000000000000000000FFFFFF0007E000000000000003C0000000000000
-      0180000000000000000000000000000000000000000000008001000000000000
-      C003000000000000E007000000000000E007000000000000C003000000000000
-      8001000000000000000000000000000000000000000000000180000000000000
-      03C000000000000007E0000000000000F81FC00307FF07FFF81FC00303FF01FF
-      F81FC00301FF007FF81FC00300FF001FF81FC003007F000F0000C003803F0003
-      0000C003C01F00000000C003E00F00000000C003F00700000000C003F8030000
-      0000C003FC010003F81FC003FE00000FF81F8001FF00001FF81F0000FF80007F
-      F81F0000FFC101FFF81FF81FFFE307FFFC3FFF87E1FFFC3FF838FF07E0FF1C1F
+      000000000000000000000000FFFFFF00FFFF000000000000FFFF000000000000
+      CFF3000000000000C7E3000000000000E3C7000000000000F18F000000000000
+      F81F000000000000FC3F000000000000FC3F000000000000F81F000000000000
+      F18F000000000000E3C7000000000000C7E3000000000000CFF3000000000000
+      FFFF000000000000FFFF000000000000F81FFFFF01FFFFFFF81F800100FF8001
+      F81F8001007F8001F81F8001003F8001F81F8001001F800100008001000F8001
+      0000800100078001000080018003E00700008001C001E00700008001E000E007
+      00008001F000E007F81F8001F800F81FF81FBFFDFC00F81FF81F0000FE00F81F
+      F81F8001FF00F81FF81FFFFFFF80F81FFC3FFF87E1FFFC3FF838FF07E0FF1C1F
       F030FE07E07F0C0FE060FC0FF03F0607C0C0F81FF81F03038181F03FFC0F8181
       0303E07FFE07C0C00607E0FFFF07E0600607E0FFFF07E0600303E07FFE07C040
       8181F03FFC0FC081C0C0F81FF81F8103E060FC0FF03F0207F030FE07E07F040F
       F838FF07E0FF0C1FFC3FFF87E1FF1C3F00000000000000000000000000000000
       000000000000}
-  end
-  object ActionList1: TActionList
-    Images = ImageList1
-    Left = 241
-    Top = 194
-    object DatasetLast1: TDataSetLast
-      Category = 'Dataset'
-      Caption = 'Ultimo'
-      Hint = 'Last'
-      ImageIndex = 3
-      DataSource = DS_Grupo
-    end
-    object DatasetNext1: TDataSetNext
-      Category = 'Dataset'
-      Caption = 'Proximo'
-      Hint = 'Next'
-      ImageIndex = 2
-      DataSource = DS_Grupo
-    end
-    object DatasetInsert1: TDataSetInsert
-      Category = 'Dataset'
-      Caption = 'Inserir'
-      Hint = 'Insert'
-      ImageIndex = 4
-      DataSource = DS_Grupo
-    end
-    object DatasetDelete1: TDataSetDelete
-      Category = 'Dataset'
-      Caption = 'Deletar'
-      Hint = 'Delete'
-      ImageIndex = 5
-      DataSource = DS_Grupo
-    end
-    object DatasetEdit1: TDataSetEdit
-      Category = 'Dataset'
-      Caption = '&Editar'
-      Hint = 'Edit'
-      ImageIndex = 6
-      DataSource = DS_Grupo
-    end
-    object DatasetPost1: TDataSetPost
-      Category = 'Dataset'
-      Caption = 'Enviar'
-      Hint = 'Post'
-      ImageIndex = 7
-      DataSource = DS_Grupo
-    end
-    object DatasetCancel1: TDataSetCancel
-      Category = 'Dataset'
-      Caption = 'Cancelar'
-      Hint = 'Cancel'
-      ImageIndex = 8
-      DataSource = DS_Grupo
-    end
-    object DatasetFirst1: TDataSetFirst
-      Category = 'Dataset'
-      Caption = 'Primeiro'
-      Hint = 'First'
-      ImageIndex = 0
-      DataSource = DS_Grupo
-    end
-    object DatasetRefresh1: TDataSetRefresh
-      Category = 'Dataset'
-      Caption = '&Refresh'
-      Hint = 'Refresh'
-      ImageIndex = 10
-      DataSource = DS_Grupo
-    end
-    object DatasetPrior1: TDataSetPrior
-      Category = 'Dataset'
-      Caption = 'Anterior'
-      Hint = 'Prior'
-      ImageIndex = 1
-      DataSource = DS_Grupo
-    end
-  end
-  object DS_Grupo: TDataSource
-    DataSet = FDQry_Grupo
-    OnDataChange = DS_GrupoDataChange
-    Left = 336
-    Top = 8
-  end
-  object FDQry_Grupo: TFDQuery
-    Active = True
-    AfterInsert = FDQry_GrupoAfterInsert
-    AfterPost = FDQry_GrupoAfterPost
-    Connection = DM.FDConnection
-    SQL.Strings = (
-      'SELECT'
-      '  id,'
-      '  id_grupo_serv,'
-      '  descricao'
-      'from grupo_servicos')
-    Left = 89
-    Top = 2
-  end
-  object DS_Grid: TDataSource
-    DataSet = FDQry_Grid
-    Left = 400
-    Top = 241
-  end
-  object ActionList2: TActionList
-    Images = ImageList1
-    Left = 209
-    Top = 514
-    object DataSetLast2: TDataSetLast
-      Category = 'Dataset'
-      Caption = 'Ultimo'
-      Hint = 'Last'
-      ImageIndex = 3
-      DataSource = DS_Grid
-    end
-    object DataSetNext2: TDataSetNext
-      Category = 'Dataset'
-      Caption = 'Proximo'
-      Hint = 'Next'
-      ImageIndex = 2
-      DataSource = DS_Grid
-    end
-    object DataSetInsert2: TDataSetInsert
-      Category = 'Dataset'
-      Caption = 'Inserir'
-      Hint = 'Insert'
-      ImageIndex = 4
-      DataSource = DS_Grid
-    end
-    object DataSetDelete2: TDataSetDelete
-      Category = 'Dataset'
-      Caption = 'Deletar'
-      Hint = 'Delete'
-      ImageIndex = 5
-      DataSource = DS_Grid
-    end
-    object DataSetEdit2: TDataSetEdit
-      Category = 'Dataset'
-      Caption = '&Editar'
-      Hint = 'Edit'
-      ImageIndex = 6
-      DataSource = DS_Grid
-    end
-    object DataSetPost2: TDataSetPost
-      Category = 'Dataset'
-      Caption = 'Enviar'
-      Hint = 'Post'
-      ImageIndex = 7
-      DataSource = DS_Grid
-    end
-    object DataSetCancel2: TDataSetCancel
-      Category = 'Dataset'
-      Caption = 'Cancelar'
-      Hint = 'Cancel'
-      ImageIndex = 8
-      DataSource = DS_Grid
-    end
-    object DataSetFirst2: TDataSetFirst
-      Category = 'Dataset'
-      Caption = 'Primeiro'
-      Hint = 'First'
-      ImageIndex = 0
-      DataSource = DS_Grid
-    end
-    object DataSetRefresh2: TDataSetRefresh
-      Category = 'Dataset'
-      Caption = '&Refresh'
-      Hint = 'Refresh'
-      ImageIndex = 10
-      DataSource = DS_Grid
-    end
-    object DataSetPrior2: TDataSetPrior
-      Category = 'Dataset'
-      Caption = 'Anterior'
-      Hint = 'Prior'
-      ImageIndex = 1
-      DataSource = DS_Grid
-    end
-    object ActionAdicionar: TAction
-      Caption = 'ActionADD'
-      ImageIndex = 4
-      OnExecute = ActionAdicionarExecute
-    end
-  end
-  object FDQry_Serv: TFDQuery
-    Active = True
-    Connection = DM.FDConnection
-    SQL.Strings = (
-      'SELECT id, nome, descricao FROM servicos')
-    Left = 25
-    Top = 2
-  end
-  object DS_Serv: TDataSource
-    DataSet = FDQry_Serv
-    Left = 288
-    Top = 8
-  end
-  object FDQry_GridIns: TFDQuery
-    Connection = DM.FDConnection
-    SQL.Strings = (
-      'select * from grupo_serv_servicos')
-    Left = 248
-    Top = 513
   end
 end

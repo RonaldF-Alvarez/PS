@@ -50,8 +50,6 @@ type
     FDQry_Valoresid_servico: TIntegerField;
     FDQry_Valorespreco: TFloatField;
     FDQry_Valoresdata: TSQLTimeStampField;
-    DataSource1: TDataSource;
-    FDQry_Valoresab: TFDQuery;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
@@ -60,6 +58,7 @@ type
     procedure FDQry_ValoresBeforePost(DataSet: TDataSet);
     procedure FDQry_CadastroAfterPost(DataSet: TDataSet);
     procedure DS_CadDataChange(Sender: TObject; Field: TField);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -117,6 +116,15 @@ begin
   inherited;
   action := cafree;
   Frm_CadService:= nil;
+end;
+
+procedure TFrm_CadService.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDQry_Cadastro.Open;
+  DS_Cad.Enabled := true;
+  FDQry_Valores.Open;
+  DS_Valores.Enabled := true;
 end;
 
 end.

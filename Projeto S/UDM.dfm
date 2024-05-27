@@ -26,7 +26,6 @@ object DM: TDM
       'User_Name=postgres'
       'Password=2581379'
       'DriverID=PG')
-    Connected = True
     Left = 112
     Top = 128
   end

@@ -16,12 +16,10 @@ uses
 type
   TFrm_CadGroup = class(TForm)
     FDQry_Grid: TFDQuery;
-    Panel1: TPanel;
     Panel3: TPanel;
     Panel2: TPanel;
     DBGrid1: TDBGrid;
     GroupBox1: TGroupBox;
-    ImageList1: TImageList;
     ToolBar1: TToolBar;
     Inserir: TToolButton;
     Editar: TToolButton;
@@ -44,7 +42,6 @@ type
     DatasetFirst1: TDataSetFirst;
     DatasetRefresh1: TDataSetRefresh;
     DatasetPrior1: TDataSetPrior;
-    DBComboBox: TDBLookupComboBox;
     DBEditGpNome: TDBEdit;
     ToolBar2: TToolBar;
     ToolButton1: TToolButton;
@@ -73,16 +70,33 @@ type
     DataSetRefresh2: TDataSetRefresh;
     DataSetPrior2: TDataSetPrior;
     ActionAdicionar: TAction;
-    DBEditIDSERV: TDBEdit;
     FDQry_Serv: TFDQuery;
     DS_Serv: TDataSource;
-    FDQry_GridIns: TFDQuery;
+    FDQry_look_serv: TFDQuery;
+    Label1: TLabel;
+    Panel1: TPanel;
+    Panel4: TPanel;
+    FDQry_Gridid_grupo_servico: TIntegerField;
+    FDQry_Gridid_servico: TIntegerField;
+    FDQry_Gridnome_servico: TWideStringField;
+    FDQry_Grupoid: TIntegerField;
+    FDQry_Grupoid_grupo_serv: TIntegerField;
+    FDQry_Grupodescricao: TWideStringField;
+    FDQry_look_servid: TIntegerField;
+    FDQry_look_servnome: TWideStringField;
+    FDQry_GridLook_serv: TStringField;
+    Label5: TLabel;
+    Label2: TLabel;
+    ImageList1: TImageList;
     procedure FormCreate(Sender: TObject);
     procedure DS_GrupoDataChange(Sender: TObject; Field: TField);
     procedure FDQry_GrupoAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FDQry_GrupoAfterPost(DataSet: TDataSet);
-    procedure ActionAdicionarExecute(Sender: TObject);
+    procedure FDQry_GridAfterInsert(DataSet: TDataSet);
+    procedure FDQry_look_servBeforeOpen(DataSet: TDataSet);
+    procedure FDQry_GridAfterPost(DataSet: TDataSet);
+    procedure DS_GridDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -98,6 +112,20 @@ implementation
 
 uses UDM;
 
+procedure TFrm_CadGroup.FDQry_GridAfterInsert(DataSet: TDataSet);
+var
+idgrupo : integer;
+begin
+  idgrupo := 0;
+  idgrupo := FDQry_Grupoid.Value;
+  FDQry_Gridid_grupo_servico.AsInteger := idgrupo;
+end;
+
+procedure TFrm_CadGroup.FDQry_GridAfterPost(DataSet: TDataSet);
+begin
+ FDQry_Grid.Refresh;
+end;
+
 procedure TFrm_CadGroup.FDQry_GrupoAfterInsert(DataSet: TDataSet);
 var
   resultado: Integer;
@@ -109,6 +137,15 @@ end;
 procedure TFrm_CadGroup.FDQry_GrupoAfterPost(DataSet: TDataSet);
 begin
   FDQry_Grupo.Refresh;
+end;
+
+procedure TFrm_CadGroup.FDQry_look_servBeforeOpen(DataSet: TDataSet);
+  Var codigo_Grupo : Integer;
+begin
+  codigo_Grupo := 0;
+  if FDQry_Grupoid_grupo_serv.AsInteger > 0 then
+    codigo_Grupo  := FDQry_Grupoid_grupo_serv.AsInteger;
+  FDQry_look_serv.ParamByName('id_grupo_servico').AsInteger := codigo_Grupo;
 end;
 
 procedure TFrm_CadGroup.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -124,9 +161,31 @@ begin
 FDQry_Serv.Open;
 FDQry_Grupo.Open;
 FDQry_Grid.Open;
-FDQry_GridIns.Open;
+//FDQry_GridIns.Open;
 end;
 
+procedure TFrm_CadGroup.DS_GridDataChange(Sender: TObject; Field: TField);
+begin
+  FDQry_look_serv.Refresh;
+end;
+
+procedure TFrm_CadGroup.DS_GrupoDataChange(Sender: TObject; Field: TField);
+var
+  id_grupo_servico : string;
+begin
+  inherited;
+  id_grupo_servico := '';
+  if FDQry_Grupo.FieldByName('id_grupo_serv').AsString <> '' then
+    id_grupo_servico := FDQry_Grupo.FieldByName('id_grupo_serv').AsString;
+  begin
+    FDQry_Grid.Close;
+    FDQry_Grid.ParamByName('id_grupo_servico').AsInteger := StrToInt(id_grupo_servico);
+    FDQry_Grid.Open;
+  end;
+end;
+
+end.
+{
 procedure TFrm_CadGroup.ActionAdicionarExecute(Sender: TObject);
 var
   id_servico: string;
@@ -150,19 +209,4 @@ begin
   end;
 end;
 
-procedure TFrm_CadGroup.DS_GrupoDataChange(Sender: TObject; Field: TField);
-var
-  id_grupo_servico : string;
-begin
-  inherited;
-  id_grupo_servico := '';
-  if FDQry_Grupo.FieldByName('id_grupo_serv').AsString <> '' then
-    id_grupo_servico := FDQry_Grupo.FieldByName('id_grupo_serv').AsString;
-  begin
-    FDQry_Grid.Close;
-    FDQry_Grid.ParamByName('id_grupo_servico').AsInteger := StrToInt(id_grupo_servico);
-    FDQry_Grid.Open;
-  end;
-end;
-
-end.
+}

@@ -1,0 +1,147 @@
+unit UCadClient;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UCadPadrao, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.DBCtrls,
+  Vcl.Mask, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList, Vcl.Buttons,
+  Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.DBActns, System.Actions,
+  Vcl.ActnList, Vcl.ComCtrls;
+
+type
+  TFrm_CadClient = class(TFrm_Padrao)
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    FDQry_Cadastrocod: TIntegerField;
+    FDQry_Cadastronome: TWideStringField;
+    FDQry_Cadastrocpf_cnpj: TWideStringField;
+    FDQry_Cadastrotelefone: TWideStringField;
+    FDQry_Endereco: TFDQuery;
+    DBEditNome: TDBEdit;
+    DBEditCPF: TDBEdit;
+    DBEditTelefone: TDBEdit;
+    ActionList2: TActionList;
+    DataSetFirst2: TDataSetFirst;
+    DataSetPrior2: TDataSetPrior;
+    DataSetLast2: TDataSetLast;
+    DataSetInsert2: TDataSetInsert;
+    DataSetDelete2: TDataSetDelete;
+    DataSetEdit2: TDataSetEdit;
+    DataSetPost2: TDataSetPost;
+    DataSetCancel2: TDataSetCancel;
+    DataSetNext2: TDataSetNext;
+    DataSetRefresh2: TDataSetRefresh;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    DBEditEnd: TDBEdit;
+    DBEditEndComp: TDBEdit;
+    DBEditEndCEP: TDBEdit;
+    DBEditEndBairro: TDBEdit;
+    DBEditEndCidade: TDBEdit;
+    DBEditEndUF: TDBEdit;
+    DBEdit1: TDBEdit;
+    DS_CadEnd: TDataSource;
+    FDQry_Enderecocpf_cnpj: TWideStringField;
+    FDQry_Enderecoendereco: TWideStringField;
+    FDQry_Enderecocomplemento: TWideStringField;
+    FDQry_Enderecocep: TWideStringField;
+    FDQry_Enderecobairro: TWideStringField;
+    FDQry_Enderecocidade: TWideStringField;
+    FDQry_Enderecouf: TWideStringField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DS_CadDataChange(Sender: TObject; Field: TField);
+    procedure FDQry_EnderecoAfterPost(DataSet: TDataSet);
+    procedure FDQry_EnderecoAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure FDQry_CadastroBeforeInsert(DataSet: TDataSet);
+    procedure DatasetInsert1Execute(Sender: TObject);
+    procedure DatasetPost1Execute(Sender: TObject);
+  private
+    { Private declarations }
+  public
+
+    { Public declarations }
+  end;
+
+var
+  Frm_CadClient: TFrm_CadClient;
+
+implementation
+
+{$R *.dfm}
+
+uses UDM;
+
+procedure TFrm_CadClient.DatasetInsert1Execute(Sender: TObject);
+begin
+  inherited;
+  DatasetInsert2.Execute;
+end;
+
+procedure TFrm_CadClient.DatasetPost1Execute(Sender: TObject);
+begin
+  inherited;
+  DatasetPost2.Execute;
+end;
+
+procedure TFrm_CadClient.DS_CadDataChange(Sender: TObject; Field: TField);
+var
+  cpf_cnpj : string;
+begin
+  inherited;
+  cpf_cnpj := '';
+  if FDQry_Cadastrocpf_cnpj.AsString <> '' then
+    cpf_cnpj := FDQry_Cadastrocpf_cnpj.AsString;
+
+  FDQry_Endereco.Close;
+  FDQry_Endereco.ParamByName('cpf_cnpj').asString := cpf_cnpj;
+  FDQry_Endereco.open;
+
+end;
+
+procedure TFrm_CadClient.FDQry_CadastroBeforeInsert(DataSet: TDataSet);
+var
+  resultado: Integer;
+begin
+//
+end;
+
+procedure TFrm_CadClient.FDQry_EnderecoAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  Getcpf;
+end;
+
+procedure TFrm_CadClient.FDQry_EnderecoAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+  Getcpf;
+  FDQry_Cadastro.Refresh;
+end;
+
+procedure TFrm_CadClient.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  action := cafree;
+  Frm_CadClient:= nil;
+end;
+
+procedure TFrm_CadClient.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FDQry_Cadastro.Open;
+  FDQry_Endereco.Open;
+end;
+
+
+
+end.

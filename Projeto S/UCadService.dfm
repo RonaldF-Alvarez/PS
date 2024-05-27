@@ -1,36 +1,36 @@
 ﻿inherited Frm_CadService: TFrm_CadService
   Caption = 'Cadastrar Servi'#231'os'
-  ClientHeight = 469
-  ClientWidth = 415
+  ClientHeight = 495
+  ClientWidth = 409
   Position = poScreenCenter
-  ExplicitWidth = 415
-  ExplicitHeight = 469
+  ExplicitWidth = 409
+  ExplicitHeight = 495
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 415
+    Width = 409
     Color = clGradientActiveCaption
-    ExplicitWidth = 399
+    ExplicitWidth = 391
     inherited Label1: TLabel
-      Left = 168
-      Top = 16
-      Width = 76
-      Caption = 'Servi'#231'os'
-      ExplicitLeft = 168
-      ExplicitTop = 16
-      ExplicitWidth = 76
+      Left = 101
+      Top = 19
+      Width = 195
+      Caption = 'Cadastro de Servi'#231'os'
+      ExplicitLeft = 101
+      ExplicitTop = 19
+      ExplicitWidth = 195
     end
     object Label5: TLabel
-      Left = 16
-      Top = 22
-      Width = 8
+      Left = 31
+      Top = 9
+      Width = 23
       Height = 13
-      Caption = 'id'
+      Caption = 'C'#243'd.'
       FocusControl = DBEdit1
     end
     object DBEdit1: TDBEdit
-      Left = 30
-      Top = 19
-      Width = 41
+      Left = 31
+      Top = 23
+      Width = 51
       Height = 21
       Color = clSilver
       DataField = 'id'
@@ -40,25 +40,25 @@
     end
   end
   inherited Panel2: TPanel
-    Width = 415
-    Height = 404
-    ExplicitWidth = 399
-    ExplicitHeight = 357
+    Width = 409
+    Height = 430
+    ExplicitWidth = 391
+    ExplicitHeight = 390
     inherited Panel3: TPanel
       Top = 89
-      Width = 413
+      Width = 407
       Align = alTop
       Color = cl3DLight
       ExplicitTop = 89
-      ExplicitWidth = 397
+      ExplicitWidth = 389
       inherited ToolBar1: TToolBar
-        Width = 411
+        Width = 405
         Height = 34
         Color = clNone
         ParentColor = False
         ParentShowHint = False
         ShowHint = True
-        ExplicitWidth = 395
+        ExplicitWidth = 387
         ExplicitHeight = 34
         inherited ToolButton5: TToolButton
           Hint = 'Primeiro'
@@ -70,10 +70,10 @@
       end
     end
     inherited Panel4: TPanel
-      Width = 413
+      Width = 407
       Height = 88
       Align = alTop
-      ExplicitWidth = 397
+      ExplicitWidth = 389
       ExplicitHeight = 88
       object Label2: TLabel
         Left = 30
@@ -84,7 +84,7 @@
       end
       object Label3: TLabel
         Left = 30
-        Top = 43
+        Top = 45
         Width = 98
         Height = 13
         Caption = 'Descri'#231#227'o do servi'#231'o'
@@ -110,19 +110,19 @@
     end
     object Panel5: TPanel
       Left = 1
-      Top = 362
-      Width = 413
+      Top = 388
+      Width = 407
       Height = 41
       Align = alBottom
-      Color = cl3DLight
+      Color = clGradientActiveCaption
       ParentBackground = False
       TabOrder = 2
-      ExplicitTop = 315
-      ExplicitWidth = 397
+      ExplicitTop = 348
+      ExplicitWidth = 389
       object ToolBar2: TToolBar
         Left = 1
         Top = 1
-        Width = 411
+        Width = 405
         Height = 40
         ButtonHeight = 40
         ButtonWidth = 40
@@ -131,7 +131,7 @@
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
-        ExplicitWidth = 395
+        ExplicitWidth = 387
         object Inserir2: TToolButton
           Left = 0
           Top = 0
@@ -209,8 +209,8 @@
     object DBGrid1: TDBGrid
       Left = 1
       Top = 130
-      Width = 413
-      Height = 232
+      Width = 407
+      Height = 258
       Align = alClient
       DataSource = DS_Valores
       FixedColor = clMedGray
@@ -230,22 +230,21 @@
         item
           Expanded = False
           FieldName = 'id'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'id_servico'
+          Title.Caption = 'Cod.'
+          Width = 44
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'data'
-          Width = 163
+          Title.Caption = 'Data de cria'#231#227'o'
+          Width = 180
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'preco'
+          Title.Caption = 'Pre'#231'o'
           Width = 137
           Visible = True
         end>
@@ -260,7 +259,7 @@
       'descricao'
       'from servicos'
       'order by id')
-    Left = 360
+    Left = 352
     object FDQry_Cadastroid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
@@ -278,6 +277,7 @@
   end
   inherited DS_Cad: TDataSource
     OnDataChange = DS_CadDataChange
+    Left = 304
   end
   object FDQry_Valores: TFDQuery [4]
     AfterInsert = FDQry_ValoresAfterInsert
@@ -285,16 +285,15 @@
     Connection = DM.FDConnection
     SQL.Strings = (
       'select'
-      'id,'
-      'id_servico, '
-      'preco, '
-      'data'
-      ''
-      'from valores'
+      'V.id,'
+      'V.id_servico, '
+      'V.preco, '
+      'V.data'
+      'from valores as V'
       'where id_servico = :id_servico'
       'order by data')
-    Left = 281
-    Top = 362
+    Left = 25
+    Top = 282
     ParamData = <
       item
         Name = 'ID_SERVICO'
@@ -324,13 +323,14 @@
   end
   object DS_Valores: TDataSource [5]
     DataSet = FDQry_Valores
-    Left = 225
-    Top = 362
+    Enabled = False
+    Left = 25
+    Top = 330
   end
   object ActionList2: TActionList [6]
     Images = ImageList1
-    Left = 345
-    Top = 362
+    Left = 25
+    Top = 234
     object DataSetPrior2: TDataSetPrior
       Category = 'Dataset'
       Caption = 'Anterior'
@@ -403,12 +403,11 @@
     end
   end
   inherited ImageList1: TImageList
-    Left = 321
     Top = 72
   end
   inherited ActionList1: TActionList
-    Left = 233
-    Top = 58
+    Left = 257
+    Top = 18
     inherited DatasetLast1: TDataSetLast [0]
     end
     inherited DatasetNext1: TDataSetNext [1]
@@ -429,34 +428,5 @@
     end
     inherited DatasetPrior1: TDataSetPrior [9]
     end
-  end
-  object DataSource1: TDataSource
-    DataSet = FDQry_Valores
-    Left = 232
-    Top = 281
-  end
-  object FDQry_Valoresab: TFDQuery
-    Active = True
-    Connection = DM.FDConnection
-    SQL.Strings = (
-      'select'
-      'id,'
-      'id_servico, '
-      'preco, '
-      'data'
-      ''
-      'from valores'
-      'where id_servico = :id_servico'
-      'order by data')
-    Left = 304
-    Top = 233
-    ParamData = <
-      item
-        Name = 'ID_SERVICO'
-        DataType = ftInteger
-        FDDataType = dtInt64
-        ParamType = ptInput
-        Value = Null
-      end>
   end
 end
