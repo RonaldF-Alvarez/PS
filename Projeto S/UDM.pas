@@ -45,7 +45,7 @@ begin
      contador := '0';
 
   try
-    result := strtoint(contador)+1;
+    result := strtoint(contador) +1;
   except
     result := 1;
   end;

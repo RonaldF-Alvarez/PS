@@ -89,14 +89,12 @@ type
     Label2: TLabel;
     ImageList1: TImageList;
     procedure FormCreate(Sender: TObject);
-    procedure DS_GrupoDataChange(Sender: TObject; Field: TField);
     procedure FDQry_GrupoAfterInsert(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FDQry_GrupoAfterPost(DataSet: TDataSet);
     procedure FDQry_GridAfterInsert(DataSet: TDataSet);
-    procedure FDQry_look_servBeforeOpen(DataSet: TDataSet);
-    procedure FDQry_GridAfterPost(DataSet: TDataSet);
     procedure DS_GridDataChange(Sender: TObject; Field: TField);
+    procedure DS_GrupoDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -112,18 +110,20 @@ implementation
 
 uses UDM;
 
+procedure TFrm_CadGroup.DS_GrupoDataChange(Sender: TObject; Field: TField);
+begin
+  FDQry_Grid.Close;
+  FDQry_Grid.ParamByName('id_grupo_serv').AsInteger := FDQry_Grupoid_grupo_serv.AsInteger;
+  FDQry_Grid.Open;
+end;
+
 procedure TFrm_CadGroup.FDQry_GridAfterInsert(DataSet: TDataSet);
 var
 idgrupo : integer;
 begin
   idgrupo := 0;
-  idgrupo := FDQry_Grupoid.Value;
+  idgrupo := FDQry_Grupoid_grupo_serv.Value;
   FDQry_Gridid_grupo_servico.AsInteger := idgrupo;
-end;
-
-procedure TFrm_CadGroup.FDQry_GridAfterPost(DataSet: TDataSet);
-begin
- FDQry_Grid.Refresh;
 end;
 
 procedure TFrm_CadGroup.FDQry_GrupoAfterInsert(DataSet: TDataSet);
@@ -139,15 +139,6 @@ begin
   FDQry_Grupo.Refresh;
 end;
 
-procedure TFrm_CadGroup.FDQry_look_servBeforeOpen(DataSet: TDataSet);
-  Var codigo_Grupo : Integer;
-begin
-  codigo_Grupo := 0;
-  if FDQry_Grupoid_grupo_serv.AsInteger > 0 then
-    codigo_Grupo  := FDQry_Grupoid_grupo_serv.AsInteger;
-  FDQry_look_serv.ParamByName('id_grupo_servico').AsInteger := codigo_Grupo;
-end;
-
 procedure TFrm_CadGroup.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   action := cafree;
@@ -161,7 +152,7 @@ begin
 FDQry_Serv.Open;
 FDQry_Grupo.Open;
 FDQry_Grid.Open;
-//FDQry_GridIns.Open;
+FDQry_look_serv.Open;
 end;
 
 procedure TFrm_CadGroup.DS_GridDataChange(Sender: TObject; Field: TField);
@@ -169,44 +160,4 @@ begin
   FDQry_look_serv.Refresh;
 end;
 
-procedure TFrm_CadGroup.DS_GrupoDataChange(Sender: TObject; Field: TField);
-var
-  id_grupo_servico : string;
-begin
-  inherited;
-  id_grupo_servico := '';
-  if FDQry_Grupo.FieldByName('id_grupo_serv').AsString <> '' then
-    id_grupo_servico := FDQry_Grupo.FieldByName('id_grupo_serv').AsString;
-  begin
-    FDQry_Grid.Close;
-    FDQry_Grid.ParamByName('id_grupo_servico').AsInteger := StrToInt(id_grupo_servico);
-    FDQry_Grid.Open;
-  end;
-end;
-
 end.
-{
-procedure TFrm_CadGroup.ActionAdicionarExecute(Sender: TObject);
-var
-  id_servico: string;
-  id_grupo_servico: string;
-begin
-//aqui vai ter a passagem pra tabela grupo_serv_servicos
-  if (DBComboBox.Text <> '') and (DBEditGpNome.Text <> '') then
-  begin
-    id_servico := DBEditIDSERV.Text;
-    id_grupo_servico := DBEditGp.Text;
-    FDQry_GridIns.SQL.Text := 'INSERT INTO grupo_serv_servicos (id_servico, id_grupo_servico) VALUES (:id_servico, :id_grupo_servico)';
-    FDQry_GridIns.ParamByName('id_servico').AsInteger := StrToInt(id_servico);
-    FDQry_GridIns.ParamByName('id_grupo_servico').AsInteger := StrToInt(id_grupo_servico);
-    FDQry_GridIns.ExecSQL;
-    FDQry_Grid.Open;
-    FDQry_Grid.Refresh;
-  end
-  else
-  begin
-    ShowMessage('Por favor, preencha todos os campos.');
-  end;
-end;
-
-}

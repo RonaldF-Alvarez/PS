@@ -1,13 +1,13 @@
 ﻿inherited Frm_CadService: TFrm_CadService
   Caption = 'Cadastrar Servi'#231'os'
-  ClientHeight = 495
-  ClientWidth = 409
+  ClientHeight = 498
+  ClientWidth = 407
   Position = poScreenCenter
-  ExplicitWidth = 409
-  ExplicitHeight = 495
+  ExplicitWidth = 407
+  ExplicitHeight = 498
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 409
+    Width = 407
     Color = clGradientActiveCaption
     ExplicitWidth = 391
     inherited Label1: TLabel
@@ -40,19 +40,19 @@
     end
   end
   inherited Panel2: TPanel
-    Width = 409
-    Height = 430
+    Width = 407
+    Height = 433
     ExplicitWidth = 391
-    ExplicitHeight = 390
+    ExplicitHeight = 392
     inherited Panel3: TPanel
       Top = 89
-      Width = 407
+      Width = 405
       Align = alTop
       Color = cl3DLight
       ExplicitTop = 89
       ExplicitWidth = 389
       inherited ToolBar1: TToolBar
-        Width = 405
+        Width = 403
         Height = 34
         Color = clNone
         ParentColor = False
@@ -70,9 +70,10 @@
       end
     end
     inherited Panel4: TPanel
-      Width = 407
+      Width = 405
       Height = 88
       Align = alTop
+      ExplicitTop = 1
       ExplicitWidth = 389
       ExplicitHeight = 88
       object Label2: TLabel
@@ -110,19 +111,19 @@
     end
     object Panel5: TPanel
       Left = 1
-      Top = 388
-      Width = 407
+      Top = 391
+      Width = 405
       Height = 41
       Align = alBottom
       Color = clGradientActiveCaption
       ParentBackground = False
       TabOrder = 2
-      ExplicitTop = 348
+      ExplicitTop = 350
       ExplicitWidth = 389
       object ToolBar2: TToolBar
         Left = 1
         Top = 1
-        Width = 405
+        Width = 403
         Height = 40
         ButtonHeight = 40
         ButtonWidth = 40
@@ -209,8 +210,8 @@
     object DBGrid1: TDBGrid
       Left = 1
       Top = 130
-      Width = 407
-      Height = 258
+      Width = 405
+      Height = 261
       Align = alClient
       DataSource = DS_Valores
       FixedColor = clMedGray
@@ -238,7 +239,7 @@
           Expanded = False
           FieldName = 'data'
           Title.Caption = 'Data de cria'#231#227'o'
-          Width = 180
+          Width = 187
           Visible = True
         end
         item
@@ -314,6 +315,7 @@
     object FDQry_Valorespreco: TFloatField
       FieldName = 'preco'
       Origin = 'preco'
+      DisplayFormat = '#,##0.00'
     end
     object FDQry_Valoresdata: TSQLTimeStampField
       FieldName = 'data'

@@ -48,12 +48,11 @@ object Frm_CadGroup: TFrm_CadGroup
     end
     object DBEditGp: TDBEdit
       Left = 30
-      Top = 23
+      Top = 22
       Width = 51
       Height = 23
       DataField = 'id_grupo_serv'
       DataSource = DS_Grupo
-      ReadOnly = True
       TabOrder = 0
     end
   end
@@ -98,6 +97,10 @@ object Frm_CadGroup: TFrm_CadGroup
         item
           Expanded = False
           FieldName = 'Look_serv'
+          PickList.Strings = (
+            'Teste 1'
+            'Teste 2'
+            'Teste 3')
           Title.Caption = 'Nome do Servi'#231'o'
           Width = 255
           Visible = True
@@ -333,7 +336,6 @@ object Frm_CadGroup: TFrm_CadGroup
   end
   object FDQry_Grid: TFDQuery
     AfterInsert = FDQry_GridAfterInsert
-    AfterPost = FDQry_GridAfterPost
     Connection = DM.FDConnection
     SQL.Strings = (
       'select'
@@ -343,14 +345,14 @@ object Frm_CadGroup: TFrm_CadGroup
       'from grupo_serv_servicos as SG'
       'inner join servicos as S'
       'on(SG.id_servico=S.id)'
-      'where id_grupo_servico = :id_grupo_servico')
+      'where id_grupo_servico = :id_grupo_serv')
     Left = 328
     Top = 240
     ParamData = <
       item
-        Name = 'ID_GRUPO_SERVICO'
+        Name = 'ID_GRUPO_SERV'
         DataType = ftInteger
-        FDDataType = dtInt64
+        FDDataType = dtUInt64
         ParamType = ptInput
         Value = Null
       end>
@@ -468,7 +470,8 @@ object Frm_CadGroup: TFrm_CadGroup
       '  id,'
       '  id_grupo_serv,'
       '  descricao'
-      'from grupo_servicos')
+      'from grupo_servicos'
+      'order by id_grupo_serv')
     Left = 305
     Top = 2
     object FDQry_Grupoid: TIntegerField
@@ -572,7 +575,6 @@ object Frm_CadGroup: TFrm_CadGroup
     end
   end
   object FDQry_Serv: TFDQuery
-    Active = True
     Connection = DM.FDConnection
     SQL.Strings = (
       'SELECT id, nome, descricao FROM servicos')
@@ -585,25 +587,15 @@ object Frm_CadGroup: TFrm_CadGroup
     Top = 8
   end
   object FDQry_look_serv: TFDQuery
-    BeforeOpen = FDQry_look_servBeforeOpen
     MasterSource = DS_Grupo
     MasterFields = 'id_grupo_serv'
     Connection = DM.FDConnection
     SQL.Strings = (
       'select s.id, s.nome from servicos S'
-      
-        'where s.id not in (select id_servico from grupo_serv_servicos as' +
-        ' GSS where id_grupo_servico = :id_grupo_servico)')
+      ''
+      '')
     Left = 184
     Top = 265
-    ParamData = <
-      item
-        Name = 'ID_GRUPO_SERVICO'
-        DataType = ftInteger
-        FDDataType = dtInt64
-        ParamType = ptInput
-        Value = Null
-      end>
     object FDQry_look_servid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
