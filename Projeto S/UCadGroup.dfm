@@ -51,8 +51,10 @@ object Frm_CadGroup: TFrm_CadGroup
       Top = 22
       Width = 51
       Height = 23
+      Color = clInfoBk
       DataField = 'id_grupo_serv'
       DataSource = DS_Grupo
+      ReadOnly = True
       TabOrder = 0
     end
   end

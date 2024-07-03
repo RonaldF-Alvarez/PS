@@ -1,13 +1,13 @@
 ﻿inherited Frm_CadService: TFrm_CadService
   Caption = 'Cadastrar Servi'#231'os'
-  ClientHeight = 498
-  ClientWidth = 407
+  ClientHeight = 459
+  ClientWidth = 391
   Position = poScreenCenter
   ExplicitWidth = 407
   ExplicitHeight = 498
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 407
+    Width = 391
     Color = clGradientActiveCaption
     ExplicitWidth = 391
     inherited Label1: TLabel
@@ -32,7 +32,7 @@
       Top = 23
       Width = 51
       Height = 21
-      Color = clSilver
+      Color = clInfoBk
       DataField = 'id'
       DataSource = DS_Cad
       ReadOnly = True
@@ -40,19 +40,19 @@
     end
   end
   inherited Panel2: TPanel
-    Width = 407
-    Height = 433
+    Width = 391
+    Height = 394
     ExplicitWidth = 391
-    ExplicitHeight = 392
+    ExplicitHeight = 394
     inherited Panel3: TPanel
       Top = 89
-      Width = 405
+      Width = 389
       Align = alTop
       Color = cl3DLight
       ExplicitTop = 89
       ExplicitWidth = 389
       inherited ToolBar1: TToolBar
-        Width = 403
+        Width = 387
         Height = 34
         Color = clNone
         ParentColor = False
@@ -70,7 +70,7 @@
       end
     end
     inherited Panel4: TPanel
-      Width = 405
+      Width = 389
       Height = 88
       Align = alTop
       ExplicitTop = 1
@@ -111,19 +111,17 @@
     end
     object Panel5: TPanel
       Left = 1
-      Top = 391
-      Width = 405
+      Top = 352
+      Width = 389
       Height = 41
       Align = alBottom
       Color = clGradientActiveCaption
       ParentBackground = False
       TabOrder = 2
-      ExplicitTop = 350
-      ExplicitWidth = 389
       object ToolBar2: TToolBar
         Left = 1
         Top = 1
-        Width = 403
+        Width = 387
         Height = 40
         ButtonHeight = 40
         ButtonWidth = 40
@@ -132,7 +130,6 @@
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
-        ExplicitWidth = 387
         object Inserir2: TToolButton
           Left = 0
           Top = 0
@@ -210,8 +207,8 @@
     object DBGrid1: TDBGrid
       Left = 1
       Top = 130
-      Width = 405
-      Height = 261
+      Width = 389
+      Height = 222
       Align = alClient
       DataSource = DS_Valores
       FixedColor = clMedGray

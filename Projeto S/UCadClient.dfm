@@ -1,15 +1,15 @@
 inherited Frm_CadClient: TFrm_CadClient
   Caption = 'Cadastro de Clientes'
-  ClientHeight = 340
-  ClientWidth = 493
+  ClientHeight = 308
+  ClientWidth = 477
   Position = poScreenCenter
   ExplicitWidth = 493
-  ExplicitHeight = 340
+  ExplicitHeight = 347
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 493
+    Width = 477
     Color = clGradientActiveCaption
-    ExplicitWidth = 476
+    ExplicitWidth = 477
     inherited Label1: TLabel
       Left = 129
       Top = 20
@@ -32,26 +32,28 @@ inherited Frm_CadClient: TFrm_CadClient
       Top = 24
       Width = 51
       Height = 21
+      Color = clInfoBk
       DataField = 'cod'
       DataSource = DS_Cad
+      ReadOnly = True
       TabOrder = 0
     end
   end
   inherited Panel2: TPanel
-    Width = 493
-    Height = 275
-    ExplicitWidth = 476
-    ExplicitHeight = 236
+    Width = 477
+    Height = 243
+    ExplicitWidth = 477
+    ExplicitHeight = 243
     inherited Panel3: TPanel
-      Top = 234
-      Width = 491
+      Top = 202
+      Width = 475
       Height = 40
-      ExplicitTop = 195
-      ExplicitWidth = 474
+      ExplicitTop = 202
+      ExplicitWidth = 475
       ExplicitHeight = 40
       inherited ToolBar1: TToolBar
-        Width = 489
-        ExplicitWidth = 472
+        Width = 473
+        ExplicitWidth = 473
         inherited ToolButton5: TToolButton
           Width = 105
           ExplicitWidth = 105
@@ -75,10 +77,11 @@ inherited Frm_CadClient: TFrm_CadClient
       end
     end
     inherited Panel4: TPanel
-      Width = 491
-      Height = 233
-      ExplicitWidth = 474
-      ExplicitHeight = 194
+      Width = 475
+      Height = 201
+      ExplicitTop = 1
+      ExplicitWidth = 475
+      ExplicitHeight = 201
       object Label2: TLabel
         Left = 28
         Top = 11
@@ -223,10 +226,21 @@ inherited Frm_CadClient: TFrm_CadClient
         DataSource = DS_CadEnd
         TabOrder = 8
       end
+      object DBEdit2: TDBEdit
+        Left = 96
+        Top = 208
+        Width = 121
+        Height = 21
+        DataField = 'endereco'
+        DataSource = DS_CadEnd
+        TabOrder = 9
+      end
     end
   end
   inherited FDQry_Cadastro: TFDQuery
     BeforeInsert = FDQry_CadastroBeforeInsert
+    BeforeEdit = FDQry_CadastroBeforeEdit
+    BeforePost = FDQry_CadastroBeforePost
     SQL.Strings = (
       'select'
       'cod,'

@@ -58,6 +58,7 @@ type
     FDQry_Enderecocidade: TWideStringField;
     FDQry_Enderecouf: TWideStringField;
     Label11: TLabel;
+    DBEdit2: TDBEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DS_CadDataChange(Sender: TObject; Field: TField);
     procedure FDQry_EnderecoAfterPost(DataSet: TDataSet);
@@ -66,6 +67,8 @@ type
     procedure FDQry_CadastroBeforeInsert(DataSet: TDataSet);
     procedure DatasetInsert1Execute(Sender: TObject);
     procedure DatasetPost1Execute(Sender: TObject);
+    procedure FDQry_CadastroBeforePost(DataSet: TDataSet);
+    procedure FDQry_CadastroBeforeEdit(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -110,11 +113,25 @@ begin
 
 end;
 
+procedure TFrm_CadClient.FDQry_CadastroBeforeEdit(DataSet: TDataSet);
+begin
+  inherited;
+  FDQry_Endereco.Close;
+end;
+
 procedure TFrm_CadClient.FDQry_CadastroBeforeInsert(DataSet: TDataSet);
 var
   resultado: Integer;
 begin
-//
+end;
+
+procedure TFrm_CadClient.FDQry_CadastroBeforePost(DataSet: TDataSet);
+begin
+ { inherited;
+  if FDQry_Enderecoendereco.AsString <> '' then
+    FDQry_Endereco.Close;
+    FDQry_Enderecoendereco :=  ;
+  }
 end;
 
 procedure TFrm_CadClient.FDQry_EnderecoAfterInsert(DataSet: TDataSet);
@@ -127,7 +144,6 @@ procedure TFrm_CadClient.FDQry_EnderecoAfterPost(DataSet: TDataSet);
 begin
   inherited;
   Getcpf;
-  FDQry_Cadastro.Refresh;
 end;
 
 procedure TFrm_CadClient.FormClose(Sender: TObject; var Action: TCloseAction);

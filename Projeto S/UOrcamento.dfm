@@ -3,7 +3,7 @@ object Frm_Orcamento: TFrm_Orcamento
   Top = 42
   BorderIcons = [biSystemMenu]
   Caption = 'Or'#231'amentos'
-  ClientHeight = 727
+  ClientHeight = 795
   ClientWidth = 621
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,35 +23,35 @@ object Frm_Orcamento: TFrm_Orcamento
     Width = 83
     Height = 13
     Caption = 'contratantes_cpf'
-    FocusControl = DBEdit2
   end
   object PanelCenter: TPanel
     Left = 0
-    Top = 27
+    Top = 37
     Width = 621
-    Height = 700
+    Height = 758
     Align = alClient
     Caption = 'PanelCenter'
     TabOrder = 1
     ExplicitWidth = 617
-    ExplicitHeight = 699
+    ExplicitHeight = 757
     object Panel7: TPanel
       Left = 1
-      Top = 145
+      Top = 172
       Width = 619
-      Height = 455
+      Height = 486
       Align = alClient
       Caption = 'Panel7'
       TabOrder = 2
       ExplicitWidth = 615
-      ExplicitHeight = 454
+      ExplicitHeight = 485
       object DBGrid: TDBGrid
         Left = 1
         Top = 1
         Width = 617
-        Height = 453
+        Height = 484
         Align = alClient
         DataSource = DS_OrcamentoItem
+        Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -104,12 +104,14 @@ object Frm_Orcamento: TFrm_Orcamento
     end
     object Panel4: TPanel
       Left = 1
-      Top = 600
+      Top = 658
       Width = 619
       Height = 40
       Align = alBottom
+      Color = clGradientActiveCaption
+      ParentBackground = False
       TabOrder = 0
-      ExplicitTop = 599
+      ExplicitTop = 657
       ExplicitWidth = 615
       object ToolBar2: TToolBar
         Left = 1
@@ -160,34 +162,34 @@ object Frm_Orcamento: TFrm_Orcamento
         object ToolButton7: TToolButton
           Left = 205
           Top = 0
-          Width = 108
+          Width = 44
           Caption = 'ToolButton5'
           ImageIndex = 4
           Style = tbsSeparator
         end
         object ToolButton8: TToolButton
-          Left = 313
+          Left = 249
           Top = 0
           Action = DataSetFirst2
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton9: TToolButton
-          Left = 354
+          Left = 290
           Top = 0
           Action = DataSetPrior2
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton10: TToolButton
-          Left = 395
+          Left = 331
           Top = 0
           Action = DataSetNext2
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton11: TToolButton
-          Left = 436
+          Left = 372
           Top = 0
           Action = DataSetLast2
           ParentShowHint = False
@@ -199,7 +201,7 @@ object Frm_Orcamento: TFrm_Orcamento
       Left = 1
       Top = 1
       Width = 619
-      Height = 144
+      Height = 171
       Align = alTop
       TabOrder = 1
       ExplicitWidth = 615
@@ -276,7 +278,9 @@ object Frm_Orcamento: TFrm_Orcamento
           ButtonHeight = 40
           ButtonWidth = 40
           Caption = 'ToolBar1'
+          Color = clGradientActiveCaption
           Images = ImageList1
+          ParentColor = False
           TabOrder = 4
           object Inserir: TToolButton
             Left = 0
@@ -316,34 +320,34 @@ object Frm_Orcamento: TFrm_Orcamento
           object ToolButton5: TToolButton
             Left = 200
             Top = 0
-            Width = 105
+            Width = 41
             Caption = 'ToolButton5'
             ImageIndex = 4
             Style = tbsSeparator
           end
           object Primeiro: TToolButton
-            Left = 305
+            Left = 241
             Top = 0
             Action = DatasetFirst1
             ParentShowHint = False
             ShowHint = True
           end
           object Anterior: TToolButton
-            Left = 345
+            Left = 281
             Top = 0
             Action = DatasetPrior1
             ParentShowHint = False
             ShowHint = True
           end
           object Ultimo: TToolButton
-            Left = 385
+            Left = 321
             Top = 0
             Action = DatasetNext1
             ParentShowHint = False
             ShowHint = True
           end
           object Proximo: TToolButton
-            Left = 425
+            Left = 361
             Top = 0
             Action = DatasetLast1
             ParentShowHint = False
@@ -366,15 +370,47 @@ object Frm_Orcamento: TFrm_Orcamento
           Caption = 'C'#243'digo'
         end
       end
+      object Panel6: TPanel
+        Left = 15
+        Top = 143
+        Width = 185
+        Height = 21
+        Caption = 'Selecionar Grupo de servi'#231'os'
+        TabOrder = 2
+      end
+      object DBLCB_grupo: TDBLookupComboBox
+        Left = 206
+        Top = 143
+        Width = 191
+        Height = 21
+        KeyField = 'id_grupo_serv'
+        ListField = 'id_grupo_serv;descricao'
+        ListFieldIndex = 1
+        ListSource = DS_Grupo_Serv
+        TabOrder = 3
+      end
+      object BtnGrupo: TButton
+        Left = 405
+        Top = 143
+        Width = 112
+        Height = 21
+        Hint = 'Insert'
+        Caption = 'Inserir'
+        ImageIndex = 4
+        TabOrder = 4
+        OnClick = BtnGrupoClick
+      end
     end
     object Panel3: TPanel
       Left = 1
-      Top = 640
+      Top = 698
       Width = 619
       Height = 59
       Align = alBottom
+      Color = clGradientActiveCaption
+      ParentBackground = False
       TabOrder = 3
-      ExplicitTop = 639
+      ExplicitTop = 697
       ExplicitWidth = 615
       object Label8: TLabel
         Left = 401
@@ -402,13 +438,15 @@ object Frm_Orcamento: TFrm_Orcamento
     Left = 0
     Top = 0
     Width = 621
-    Height = 27
+    Height = 37
     Align = alTop
+    Color = clGradientActiveCaption
+    ParentBackground = False
     TabOrder = 0
     ExplicitWidth = 617
     object Label1: TLabel
       Left = 10
-      Top = 2
+      Top = 8
       Width = 78
       Height = 19
       Caption = 'Or'#231'amento'
@@ -420,8 +458,8 @@ object Frm_Orcamento: TFrm_Orcamento
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 402
-      Top = 2
+      Left = 348
+      Top = 8
       Width = 43
       Height = 19
       Caption = 'Status'
@@ -433,8 +471,8 @@ object Frm_Orcamento: TFrm_Orcamento
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 230
-      Top = 2
+      Left = 181
+      Top = 8
       Width = 32
       Height = 19
       Caption = 'Data'
@@ -447,45 +485,70 @@ object Frm_Orcamento: TFrm_Orcamento
     end
     object Id_Orc: TDBEdit
       Left = 93
-      Top = 2
-      Width = 121
+      Top = 8
+      Width = 77
       Height = 21
+      Color = clInfoBk
       DataField = 'cod'
       DataSource = DS_Orcamento
       ReadOnly = True
       TabOrder = 0
     end
     object Data_Orc: TDBEdit
-      Left = 266
-      Top = 2
-      Width = 121
-      Height = 21
-      DataField = 'data_orcamento'
-      DataSource = DS_Orcamento
-      TabOrder = 1
-    end
-    object Status: TDBEdit
-      Left = 452
-      Top = 2
+      Left = 219
+      Top = 8
       Width = 121
       Height = 21
       Color = clInfoBk
-      DataField = 'status'
+      DataField = 'data_orcamento'
       DataSource = DS_Orcamento
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object EditStatus: TEdit
+      Left = 397
+      Top = 8
+      Width = 121
+      Height = 21
+      Color = clInfoBk
+      ReadOnly = True
       TabOrder = 2
     end
-  end
-  object DBEdit2: TDBEdit
-    Left = 480
-    Top = 744
-    Width = 186
-    Height = 21
-    DataField = 'contratantes_cpf'
-    DataSource = DS_Orcamento
-    TabOrder = 2
+    object ToolBar3: TToolBar
+      Left = 536
+      Top = 1
+      Width = 84
+      Height = 35
+      Align = alRight
+      ButtonHeight = 35
+      ButtonWidth = 40
+      Caption = 'ToolBar3'
+      Images = ImageList1
+      TabOrder = 3
+      ExplicitLeft = 532
+      object BtnMais: TToolButton
+        Left = 0
+        Top = 0
+        Caption = 'BtnMais'
+        Enabled = False
+        ImageIndex = 1
+        OnClick = BtnMaisClick
+      end
+      object BtnMenos: TToolButton
+        Left = 40
+        Top = 0
+        Caption = 'BtnMenos'
+        Enabled = False
+        ImageIndex = 2
+        OnClick = BtnMenosClick
+      end
+    end
   end
   object FDQry_Orcamento: TFDQuery
     AfterInsert = FDQry_OrcamentoAfterInsert
+    AfterEdit = FDQry_OrcamentoAfterEdit
+    BeforePost = FDQry_OrcamentoBeforePost
+    BeforeCancel = FDQry_OrcamentoBeforeCancel
     AfterScroll = FDQry_OrcamentoAfterScroll
     Connection = DM.FDConnection
     SQL.Strings = (
@@ -501,8 +564,8 @@ object Frm_Orcamento: TFrm_Orcamento
       'from Orcamentos as O'
       'left join contratantes C on(C.cod=O.cod_cliente)'
       'Order by O.cod, O.data_orcamento')
-    Left = 224
-    Top = 48
+    Left = 328
+    Top = 56
     object FDQry_Orcamentocod: TIntegerField
       FieldName = 'cod'
       Origin = 'cod'
@@ -621,7 +684,7 @@ object Frm_Orcamento: TFrm_Orcamento
       ''
       'order by cod')
     Left = 448
-    Top = 353
+    Top = 329
     object FDQry_Contratantescod: TIntegerField
       FieldName = 'cod'
     end
@@ -640,11 +703,11 @@ object Frm_Orcamento: TFrm_Orcamento
   end
   object DS_Contratantes: TDataSource
     DataSet = FDQry_Contratantes
-    Left = 512
-    Top = 377
+    Left = 520
+    Top = 353
   end
   object ImageList1: TImageList
-    Left = 17
+    Left = 561
     Top = 120
     Bitmap = {
       494C010109001800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -1052,8 +1115,8 @@ object Frm_Orcamento: TFrm_Orcamento
   end
   object ActionList1: TActionList
     Images = ImageList1
-    Left = 169
-    Top = 26
+    Left = 513
+    Top = 58
     object DatasetLast1: TDataSetLast
       Category = 'Dataset'
       Caption = 'Ultimo'
@@ -1202,8 +1265,9 @@ object Frm_Orcamento: TFrm_Orcamento
   end
   object DS_Orcamento: TDataSource
     DataSet = FDQry_Orcamento
-    Left = 297
-    Top = 74
+    OnDataChange = DS_OrcamentoDataChange
+    Left = 433
+    Top = 58
   end
   object FDQry_Servicos: TFDQuery
     Connection = DM.FDConnection
@@ -1216,8 +1280,8 @@ object Frm_Orcamento: TFrm_Orcamento
       ''
       'order by id'
       '')
-    Left = 465
-    Top = 442
+    Left = 449
+    Top = 434
     object FDQry_Servicosid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
@@ -1231,7 +1295,7 @@ object Frm_Orcamento: TFrm_Orcamento
   end
   object DS_Servicos: TDataSource
     DataSet = FDQry_Servicos
-    Left = 537
+    Left = 497
     Top = 466
   end
   object FDQry_get_preco_serv: TFDQuery
@@ -1254,12 +1318,43 @@ object Frm_Orcamento: TFrm_Orcamento
       end
       item
         Name = 'DATA_ORCAMENTO'
-        DataType = ftDate
+        DataType = ftDateTime
         ParamType = ptInput
+        Value = Null
       end>
     object FDQry_get_preco_servpreco: TFloatField
       FieldName = 'preco'
       Origin = 'preco'
     end
+    object FDQry_get_preco_servdata: TSQLTimeStampField
+      FieldName = 'data'
+      Origin = 'data'
+      ProviderFlags = [pfInUpdate]
+    end
+  end
+  object FDQry_Grupo_Serv: TFDQuery
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'select'
+      'id_grupo_serv,'
+      'descricao'
+      'from grupo_servicos')
+    Left = 489
+    Top = 249
+    object FDQry_Grupo_Servid_grupo_serv: TIntegerField
+      FieldName = 'id_grupo_serv'
+      Origin = 'id_grupo_serv'
+    end
+    object FDQry_Grupo_Servdescricao: TWideStringField
+      FieldName = 'descricao'
+      Origin = 'descricao'
+      FixedChar = True
+      Size = 255
+    end
+  end
+  object DS_Grupo_Serv: TDataSource
+    DataSet = FDQry_Grupo_Serv
+    Left = 561
+    Top = 273
   end
 end

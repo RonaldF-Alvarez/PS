@@ -23,7 +23,6 @@ type
     FDQry_Orcamento: TFDQuery;
     Id_Orc: TDBEdit;
     Data_Orc: TDBEdit;
-    Status: TDBEdit;
     Label5: TLabel;
     Label6: TLabel;
     Panel4: TPanel;
@@ -111,12 +110,23 @@ type
     FDQry_OrcamentoItemvalor_unid: TFloatField;
     FDQry_OrcamentoItemcalc_total_unidade: TFloatField;
     Label2: TLabel;
-    DBEdit2: TDBEdit;
     FDQry_Orcamentocontratantes_telefone: TWideStringField;
     FDQry_OrcamentoItemservico_nome: TWideStringField;
     FDQry_OrcamentoItemLook_nome_servico: TStringField;
     FDQry_get_preco_serv: TFDQuery;
     FDQry_get_preco_servpreco: TFloatField;
+    EditStatus: TEdit;
+    ToolBar3: TToolBar;
+    BtnMais: TToolButton;
+    BtnMenos: TToolButton;
+    Panel6: TPanel;
+    DBLCB_grupo: TDBLookupComboBox;
+    FDQry_Grupo_Serv: TFDQuery;
+    DS_Grupo_Serv: TDataSource;
+    BtnGrupo: TButton;
+    FDQry_Grupo_Servid_grupo_serv: TIntegerField;
+    FDQry_Grupo_Servdescricao: TWideStringField;
+    FDQry_get_preco_servdata: TSQLTimeStampField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FDQry_OrcamentoAfterScroll(DataSet: TDataSet);
@@ -125,14 +135,23 @@ type
     procedure FDQry_OrcamentoItemCalcFields(DataSet: TDataSet);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure FDQry_OrcamentoItemBeforePost(DataSet: TDataSet);
+    procedure DS_OrcamentoDataChange(Sender: TObject; Field: TField);
+    procedure BtnMaisClick(Sender: TObject);
+    procedure BtnMenosClick(Sender: TObject);
+    procedure FDQry_OrcamentoBeforePost(DataSet: TDataSet);
+    procedure FDQry_OrcamentoAfterEdit(DataSet: TDataSet);
+    procedure FDQry_OrcamentoBeforeCancel(DataSet: TDataSet);
+    procedure BtnGrupoClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    function GetText (valor:integer):String;
   end;
 
 var
   Frm_Orcamento: TFrm_Orcamento;
+  statusnum : integer;
 
 implementation
 
@@ -141,12 +160,91 @@ implementation
 
 {$R *.dfm}
 
+function TFrm_Orcamento.GetText (valor:integer):String;
+begin
+  case valor of
+    1: result := 'Pendente';
+    2: result := 'Aguardando aprovação';
+    3: result := 'Aprovado';
+    else
+      result := 'Sem status';
+  end;
+end;
+
+procedure TFrm_Orcamento.BtnGrupoClick(Sender: TObject);
+  var
+  QueryServicos, QryDelete: TFDQuery;
+  idGrupoServ: Integer;
+begin
+//Limpeza
+  QryDelete := TFDQuery.Create(nil);
+  try
+    QryDelete.Connection := DM.FDConnection;
+    QryDelete.SQL.Text := 'DELETE FROM orcamento_itens WHERE cod_orcamento = :cod_orcamento';
+    QryDelete.ParamByName('cod_orcamento').AsInteger := FDQry_Orcamentocod.AsInteger;
+    QryDelete.ExecSQL;
+  finally
+    QryDelete.Free;
+  end;
+//Inserção
+  idGrupoServ := DBLCB_Grupo.KeyValue;
+  QueryServicos := TFDQuery.Create(nil);
+  try
+    QueryServicos.Connection := DM.FDConnection;
+    QueryServicos.SQL.Text := 'SELECT id, nome, descricao FROM servicos ' +
+                              'WHERE id IN (SELECT id_servico FROM grupo_serv_servicos WHERE id_grupo_servico = :idGrupoServ)';
+    QueryServicos.ParamByName('idGrupoServ').AsInteger := idGrupoServ;
+    QueryServicos.Open;
+  while not QueryServicos.Eof do
+    begin
+      DataSetInsert2.Execute;
+      FDQry_OrcamentoItemid_servico.AsInteger := QueryServicos.FieldByName('id').AsInteger;
+      QueryServicos.Next;
+    end;
+    finally
+    QueryServicos.Free;
+  end;
+end;
+
+procedure TFrm_Orcamento.BtnMaisClick(Sender: TObject);
+var
+  status : integer;
+begin
+if (statusnum <= -1) then
+    raise Exception.Create('Sem status definido')
+  else
+  Dec(statusnum);
+  EditStatus.Text := Frm_Orcamento.GetText(statusnum);
+end;
+
+procedure TFrm_Orcamento.BtnMenosClick(Sender: TObject);
+begin
+   if (statusnum > 3) then
+    raise Exception.Create('Sem status definido')
+  else
+  begin
+    Inc(statusnum);
+    EditStatus.Text := Frm_Orcamento.GetText(statusnum)
+  end;
+end;
+
 procedure TFrm_Orcamento.DBLookupComboBox1CloseUp(Sender: TObject);
 begin
   FDQry_Orcamentocod_cliente.AsInteger := FDQry_Contratantescod.AsInteger;
   FDQry_Orcamentocontratantes_nome.AsString := FDQry_Contratantesnome.AsString;
   FDQry_Orcamentocontratantes_cpf.AsString :=  FDQry_Contratantescpf_cnpj.AsString;
   FDQry_Orcamentocontratantes_telefone.AsString := FDQry_Contratantestelefone.AsString;
+end;
+
+procedure TFrm_Orcamento.DS_OrcamentoDataChange(Sender: TObject; Field: TField);
+begin
+  EditStatus.Text := Frm_Orcamento.GetText(FDQry_Orcamentostatus.AsInteger);
+end;
+
+procedure TFrm_Orcamento.FDQry_OrcamentoAfterEdit(DataSet: TDataSet);
+begin
+  BtnMais.enabled := true;
+  BtnMenos.enabled := true;
 end;
 
 procedure TFrm_Orcamento.FDQry_OrcamentoAfterInsert(DataSet: TDataSet);
@@ -157,14 +255,25 @@ begin
   resultado := DM.RetornaContador('orcamentos', 'cod');
   FDQry_Orcamentocod.AsInteger:= resultado;
   Id_Orc.Text := IntToStr(resultado);
-  FDQry_Orcamentostatus.Text := '1';
+  FDQry_Orcamentostatus.AsInteger := 1;
 end;
 
 procedure TFrm_Orcamento.FDQry_OrcamentoAfterScroll(DataSet: TDataSet);
 begin
   FDQry_OrcamentoItem.close;
-  FDQry_OrcamentoItem.parambyname('cod_orcamento').AsInteger := FDQry_Orcamentocod.AsInteger;
+  FDQry_OrcamentoItem.parambyname('cod_orcamento').AsInteger :=FDQry_Orcamentocod.AsInteger;
   FDQry_OrcamentoItem.open;
+end;
+
+procedure TFrm_Orcamento.FDQry_OrcamentoBeforeCancel(DataSet: TDataSet);
+begin
+  BtnMais.enabled := false;
+  BtnMenos.enabled := false;
+end;
+
+procedure TFrm_Orcamento.FDQry_OrcamentoBeforePost(DataSet: TDataSet);
+begin
+  FDQry_Orcamentostatus.AsInteger := statusnum;
 end;
 
 procedure TFrm_Orcamento.FDQry_OrcamentoItemAfterInsert(DataSet: TDataSet);
@@ -208,6 +317,10 @@ begin
   FDQry_OrcamentoItem.Open;
   FDQry_Contratantes.Open;
   FDQry_Servicos.Open;
+  FDQry_Grupo_Serv.Open;
+  FDQry_get_preco_serv.Open;
+  EditStatus.Text := Frm_Orcamento.GetText(FDQry_Orcamentostatus.AsInteger);
+  statusnum := FDQry_Orcamentostatus.AsInteger;
 end;
 
 end.
