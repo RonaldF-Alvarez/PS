@@ -12,7 +12,7 @@ uses
   FireDAC.Phys.PGDef, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.DBCtrls, Vcl.Mask, Vcl.ComCtrls,
   Vcl.ToolWin, Vcl.DBActns, System.Actions, Vcl.ActnList, System.ImageList,
-  Vcl.ImgList;
+  Vcl.ImgList, frxSmartMemo, frCoreClasses, frxClass, frxDBSet, Vcl.Buttons;
 
 type
   TFrm_Orcamento = class(TForm)
@@ -104,7 +104,6 @@ type
     FDQry_Servicosnome: TWideStringField;
     Panel3: TPanel;
     DBEdit1: TDBEdit;
-    Label8: TLabel;
     FDQry_Orcamentocontratantes_nome: TWideStringField;
     FDQry_Orcamentocontratantes_cpf: TWideStringField;
     FDQry_OrcamentoItemvalor_unid: TFloatField;
@@ -127,6 +126,13 @@ type
     FDQry_Grupo_Servid_grupo_serv: TIntegerField;
     FDQry_Grupo_Servdescricao: TWideStringField;
     FDQry_get_preco_servdata: TSQLTimeStampField;
+    FDQry_OrcamentoItemcalc_total_orcamento: TFloatField;
+    Action1: TAction;
+    Action2: TAction;
+    Label8: TLabel;
+    LblTotal: TLabel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FDQry_OrcamentoAfterScroll(DataSet: TDataSet);
@@ -138,25 +144,28 @@ type
     procedure DS_OrcamentoDataChange(Sender: TObject; Field: TField);
     procedure BtnMaisClick(Sender: TObject);
     procedure BtnMenosClick(Sender: TObject);
-    procedure FDQry_OrcamentoBeforePost(DataSet: TDataSet);
     procedure FDQry_OrcamentoAfterEdit(DataSet: TDataSet);
     procedure FDQry_OrcamentoBeforeCancel(DataSet: TDataSet);
     procedure BtnGrupoClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure FDQry_OrcamentoBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
     { Public declarations }
     function GetText (valor:integer):String;
+    var total_rel : double;
   end;
 
 var
   Frm_Orcamento: TFrm_Orcamento;
-  statusnum : integer;
+  statusnum, numstatus : integer;
 
 implementation
 
 
-  uses UDM;
+  uses UDM, UFrmRelOrcamento;
 
 {$R *.dfm}
 
@@ -166,9 +175,29 @@ begin
     1: result := 'Pendente';
     2: result := 'Aguardando aprovação';
     3: result := 'Aprovado';
+    4: result := 'Finalizado';
     else
       result := 'Sem status';
   end;
+end;
+
+procedure TFrm_Orcamento.SpeedButton1Click(Sender: TObject);
+begin
+  numstatus := 4;
+  FDQry_Orcamento.Edit;
+  FDQry_Orcamentostatus.AsInteger := numstatus;
+  FDQry_Orcamento.Post;
+  EditStatus.Text := Frm_Orcamento.GetText(numstatus);
+end;
+
+procedure TFrm_Orcamento.SpeedButton2Click(Sender: TObject);
+begin
+  if Assigned(FrmRelOrc) then
+    FrmRelOrc.Free;
+  FrmRelOrc := TFrmRelOrc.Create(Application);
+  FrmRelOrc.FDQry_ReportOrcamentoItem.ParamByName('cod_orcamento').AsInteger := FDQry_Orcamentocod.AsInteger;
+  FrmRelOrc.FDQry_ReportOrcamentoItem.Open;
+  FrmRelOrc.RelReportOrcamento.ShowReport();
 end;
 
 procedure TFrm_Orcamento.BtnGrupoClick(Sender: TObject);
@@ -219,7 +248,7 @@ end;
 
 procedure TFrm_Orcamento.BtnMenosClick(Sender: TObject);
 begin
-   if (statusnum > 3) then
+   if (statusnum > 4) then
     raise Exception.Create('Sem status definido')
   else
   begin
@@ -256,6 +285,7 @@ begin
   FDQry_Orcamentocod.AsInteger:= resultado;
   Id_Orc.Text := IntToStr(resultado);
   FDQry_Orcamentostatus.AsInteger := 1;
+  statusnum := 1;
 end;
 
 procedure TFrm_Orcamento.FDQry_OrcamentoAfterScroll(DataSet: TDataSet);
@@ -300,9 +330,37 @@ begin
 end;
 
 procedure TFrm_Orcamento.FDQry_OrcamentoItemCalcFields(DataSet: TDataSet);
+  var
+  QueryCalc: TFDQuery;
+  valor_unid, total_orcamento : Double;
+  qtde: integer;
+
 begin
   FDQry_OrcamentoItemcalc_total_unidade.asfloat :=
   FDQry_OrcamentoItemquantidade.AsFloat * FDQry_OrcamentoItemvalor_unid.AsFloat;
+
+  qtde:= 0;
+  valor_unid := 0;
+  total_orcamento := 0;
+  QueryCalc := TFDQuery.Create(nil);
+  try
+    QueryCalc.Connection := DM.FDConnection;
+    QueryCalc.SQL.Text := FDQry_OrcamentoItem.SQL.Text;
+
+    QueryCalc.ParamByName('cod_orcamento').AsInteger := FDQry_Orcamentocod.AsInteger;
+    QueryCalc.Open;
+    while not QueryCalc.Eof do
+    begin
+      valor_unid := QueryCalc.FieldByName('valor_unid').AsFloat;
+      qtde := QueryCalc.FieldByName('quantidade').AsInteger;
+      total_orcamento := total_orcamento + (valor_unid * qtde);
+      QueryCalc.Next;
+      end;
+    finally
+    FDQry_OrcamentoItemcalc_total_orcamento.AsFloat := total_orcamento;
+    QueryCalc.Free;
+    total_rel := total_orcamento;
+  end;
 end;
 
 procedure TFrm_Orcamento.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -320,7 +378,6 @@ begin
   FDQry_Grupo_Serv.Open;
   FDQry_get_preco_serv.Open;
   EditStatus.Text := Frm_Orcamento.GetText(FDQry_Orcamentostatus.AsInteger);
-  statusnum := FDQry_Orcamentostatus.AsInteger;
 end;
 
 end.

@@ -1,0 +1,56 @@
+object Frm_Principal: TFrm_Principal
+  Left = 592
+  Top = 374
+  Caption = '+'
+  ClientHeight = 299
+  ClientWidth = 635
+  Color = clSilver
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIForm
+  Menu = MainMenu1
+  Position = poDesigned
+  WindowState = wsMaximized
+  TextHeight = 13
+  object MainMenu1: TMainMenu
+    Left = 96
+    Top = 72
+    object Cadastros1: TMenuItem
+      Caption = 'Cadastros'
+      object Contratantes1: TMenuItem
+        Caption = 'Contratantes'
+        OnClick = Contratantes1Click
+      end
+      object Servios1: TMenuItem
+        Caption = 'Servi'#231'os'
+        object Cadastro1: TMenuItem
+          Caption = 'Cadastro'
+          OnClick = Cadastro1Click
+        end
+        object Grupos1: TMenuItem
+          Caption = 'Grupos'
+          OnClick = Grupos1Click
+        end
+      end
+    end
+    object Orcamentos1: TMenuItem
+      Caption = 'Or'#231'amentos'
+      OnClick = Orcamentos1Click
+    end
+    object Relatrios1: TMenuItem
+      Caption = 'Relat'#243'rios'
+      object Orcamentos: TMenuItem
+        Caption = 'Or'#231'amentos'
+      end
+    end
+    object sobre1: TMenuItem
+      Caption = 'Sobre'
+    end
+    object Sair1: TMenuItem
+      Caption = 'Sair'
+    end
+  end
+end

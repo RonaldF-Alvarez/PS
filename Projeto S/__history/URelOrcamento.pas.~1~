@@ -1,0 +1,24 @@
+unit URelOrcamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TForm_Rel_Orcamento = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_Rel_Orcamento: TForm_Rel_Orcamento;
+
+implementation
+
+{$R *.dfm}
+
+end.

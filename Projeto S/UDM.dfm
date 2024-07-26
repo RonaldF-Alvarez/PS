@@ -26,7 +26,7 @@ object DM: TDM
       'User_Name=postgres'
       'Password=2581379'
       'DriverID=PG')
-    Left = 112
-    Top = 128
+    Left = 160
+    Top = 56
   end
 end

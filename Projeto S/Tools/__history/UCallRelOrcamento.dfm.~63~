@@ -1,0 +1,625 @@
+﻿object FrmCallRelOrcamento: TFrmCallRelOrcamento
+  Left = 0
+  Top = 0
+  Caption = 'FrmCallRelOrcamento'
+  ClientHeight = 274
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnCreate = FormCreate
+  TextHeight = 15
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 57
+    Align = alTop
+    Color = clGradientActiveCaption
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 624
+    object Label1: TLabel
+      Left = 184
+      Top = 16
+      Width = 248
+      Height = 25
+      Caption = 'Criar relat'#243'rio de or'#231'amentos'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 233
+    Width = 628
+    Height = 41
+    Align = alBottom
+    TabOrder = 1
+    ExplicitTop = 232
+    ExplicitWidth = 624
+  end
+  object Panel5: TPanel
+    Left = 0
+    Top = 57
+    Width = 628
+    Height = 176
+    Align = alClient
+    TabOrder = 2
+    ExplicitWidth = 624
+    ExplicitHeight = 175
+    object até: TLabel
+      Left = 231
+      Top = 76
+      Width = 16
+      Height = 15
+      Caption = 'at'#233
+    end
+    object Label2: TLabel
+      Left = 48
+      Top = 44
+      Width = 113
+      Height = 21
+      Caption = 'Selecionar datas'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object DateTimePicker1: TDateTimePicker
+      Left = 104
+      Top = 72
+      Width = 121
+      Height = 23
+      Date = 45292.000000000000000000
+      Time = 45292.000000000000000000
+      TabOrder = 0
+    end
+    object Panel4: TPanel
+      Left = 480
+      Top = 1
+      Width = 147
+      Height = 174
+      Align = alRight
+      TabOrder = 1
+      ExplicitLeft = 476
+      ExplicitHeight = 173
+      object GroupBox1: TGroupBox
+        Left = 1
+        Top = 1
+        Width = 145
+        Height = 129
+        Align = alTop
+        Caption = 'Facilidades'
+        TabOrder = 0
+        object Button1: TButton
+          Left = 17
+          Top = 23
+          Width = 113
+          Height = 25
+          Caption = 'Ultimos 30 dias'
+          TabOrder = 0
+        end
+        object Button2: TButton
+          Left = 17
+          Top = 54
+          Width = 113
+          Height = 25
+          Caption = 'Ultimos 7 dias'
+          TabOrder = 1
+        end
+        object Button3: TButton
+          Left = 17
+          Top = 85
+          Width = 113
+          Height = 25
+          Caption = 'Ultimo dia'
+          TabOrder = 2
+        end
+      end
+      object BitBtn1: TBitBtn
+        Left = 18
+        Top = 136
+        Width = 113
+        Height = 25
+        Caption = 'Criar Relat'#243'rios'
+        TabOrder = 1
+        OnClick = BitBtn1Click
+      end
+    end
+    object DateTimePicker2: TDateTimePicker
+      Left = 253
+      Top = 72
+      Width = 121
+      Height = 23
+      Date = 45292.000000000000000000
+      Time = 45292.000000000000000000
+      TabOrder = 2
+    end
+  end
+  object FDQry_RelOrcamentos: TFDQuery
+    Active = True
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'SELECT '
+      '    O.cod,'
+      '    O.data_orcamento,'
+      '    O.status'
+      'FROM Orcamentos AS O'
+      'WHERE O.data_orcamento BETWEEN :data_inicio AND :data_fim'
+      'order by data_orcamento')
+    Left = 200
+    Top = 161
+    ParamData = <
+      item
+        Name = 'DATA_INICIO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DATA_FIM'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end>
+    object FDQry_RelOrcamentoscod: TIntegerField
+      FieldName = 'cod'
+      Origin = 'cod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQry_RelOrcamentosdata_orcamento: TSQLTimeStampField
+      FieldName = 'data_orcamento'
+      Origin = 'data_orcamento'
+      ProviderFlags = [pfInUpdate]
+    end
+    object FDQry_RelOrcamentosstatus: TIntegerField
+      FieldName = 'status'
+      Origin = 'status'
+    end
+  end
+  object DS_RelOrcamentos: TDataSource
+    DataSet = FDQry_RelOrcamentos
+    Left = 312
+    Top = 169
+  end
+  object RelReportOrc: TfrxReport
+    Version = '2024.2.6'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45488.799877662000000000
+    ReportOptions.LastChange = 45498.300025196760000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      'end.            ')
+    OnBeforePrint = RelReportOrcBeforePrint
+    OnPrintPage = RelReportOrcPrintPage
+    Left = 64
+    Top = 168
+    Datasets = <
+      item
+        DataSet = DSRelOrcDB
+        DataSetName = 'DSRelOrcDB'
+      end
+      item
+        DataSet = DSRelOrcItemDB
+        DataSetName = 'DSRelOrcItemDB'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 98.267781670000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          AllowVectorExport = True
+          Left = 302.362385220000000000
+          Top = 7.559059960000000000
+          Width = 117.165430730000000000
+          Height = 30.236241670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -21
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Or'#231'amento')
+          ParentFont = False
+        end
+        object Line1: TfrxLineView
+          AllowVectorExport = True
+          Left = 37.795299530000000000
+          Top = 37.795301200000000000
+          Width = 646.299610140000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Left = 41.574830000000000000
+          Top = 45.354360000000000000
+          Width = 94.488250730000000000
+          Height = 18.897651670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Or'#231'amento N'#186':')
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 37.795300000000000000
+          Top = 79.370130000000000000
+          Width = 34.015770730000000000
+          Height = 18.897651670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Seq')
+        end
+        object Line2: TfrxLineView
+          AllowVectorExport = True
+          Left = 37.795300000000000000
+          Top = 68.031540000000000000
+          Width = 646.299610140000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+        object Memo5: TfrxMemoView
+          AllowVectorExport = True
+          Left = 83.149660000000000000
+          Top = 79.370130000000000000
+          Width = 340.157700730000000000
+          Height = 18.897651670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Descri'#231#227'o')
+        end
+        object Memo6: TfrxMemoView
+          AllowVectorExport = True
+          Left = 432.850650000000000000
+          Top = 79.370130000000000000
+          Width = 79.370130730000000000
+          Height = 18.897651670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Qtd')
+        end
+        object Memo7: TfrxMemoView
+          AllowVectorExport = True
+          Left = 519.779840000000000000
+          Top = 79.370130000000000000
+          Width = 79.370130730000000000
+          Height = 18.897651670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Valor unit')
+        end
+        object Memo8: TfrxMemoView
+          AllowVectorExport = True
+          Left = 608.504330000000000000
+          Top = 79.370130000000000000
+          Width = 75.590600730000000000
+          Height = 18.897651670000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Valor total')
+        end
+        object DSRelOrcDBdata_orcamento: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 585.827150000000000000
+          Top = 11.338590000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'data_orcamento'
+          DataSet = DSRelOrcDB
+          DataSetName = 'DSRelOrcDB'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[DSRelOrcDB."data_orcamento"]')
+        end
+        object TfrxMemoView
+          AllowVectorExport = True
+          Top = -18.897650000000000000
+          Frame.Typ = []
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 68.031540000000000000
+        Top = 306.141930000000000000
+        Width = 718.110700000000000000
+        object Line3: TfrxLineView
+          AllowVectorExport = True
+          Left = 37.795300000000000000
+          Top = 31.574830000000000000
+          Width = 646.299610140000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+        object Memo11: TfrxMemoView
+          AllowVectorExport = True
+          Left = 413.189241130000000000
+          Top = 5.559060570000000000
+          Width = 151.181170210000000000
+          Height = 18.897644040000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Total do or'#231'amento :')
+          ParentFont = False
+        end
+        object Line4: TfrxLineView
+          AllowVectorExport = True
+          Left = 37.795300000000000000
+          Width = 646.299610140000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 23.354360000000000000
+        Top = 177.637910000000000000
+        Width = 718.110700000000000000
+        DataSet = DSRelOrcDB
+        DataSetName = 'DSRelOrcDB'
+        RowCount = 0
+        StartNewPage = True
+        object DSRelOrcDBcod: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 143.622140000000000000
+          Top = 3.779530000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'cod'
+          DataSet = DSRelOrcDB
+          DataSetName = 'DSRelOrcDB'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[DSRelOrcDB."cod"]')
+        end
+      end
+      object DetailData1: TfrxDetailData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 222.992270000000000000
+        Width = 718.110700000000000000
+        DataSet = DSRelOrcItemDB
+        DataSetName = 'DSRelOrcItemDB'
+        RowCount = 0
+        object DSRelOrcItemDBvalor_unid: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 525.354670000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'valor_unid'
+          DataSet = DSRelOrcItemDB
+          DataSetName = 'DSRelOrcItemDB'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[DSRelOrcItemDB."valor_unid"]')
+        end
+        object DSRelOrcItemDBquantidade: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 419.527830000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'quantidade'
+          DataSet = DSRelOrcItemDB
+          DataSetName = 'DSRelOrcItemDB'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[DSRelOrcItemDB."quantidade"]')
+        end
+        object Line: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 34.015770000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Line]')
+        end
+        object DSRelOrcItemDBservico_nome: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 147.401670000000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'servico_nome'
+          DataSet = DSRelOrcItemDB
+          DataSetName = 'DSRelOrcItemDB'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[DSRelOrcItemDB."servico_nome"]')
+        end
+      end
+      object TfrxMemoView
+        AllowVectorExport = True
+        Frame.Typ = []
+      end
+    end
+  end
+  object DSRelOrcDB: TfrxDBDataset
+    UserName = 'DSRelOrcDB'
+    CloseDataSource = False
+    DataSet = FDQry_RelOrcamentos
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 392
+    Top = 201
+    FieldDefs = <
+      item
+        FieldName = 'cod'
+      end
+      item
+        FieldName = 'data_orcamento'
+      end
+      item
+        FieldName = 'status'
+      end>
+  end
+  object DSRelOrcItemDB: TfrxDBDataset
+    UserName = 'DSRelOrcItemDB'
+    CloseDataSource = False
+    DataSet = FDQry_RelOrcamentoItens
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 408
+    Top = 129
+    FieldDefs = <
+      item
+        FieldName = 'cod_orcamento'
+      end
+      item
+        FieldName = 'id_servico'
+      end
+      item
+        FieldName = 'quantidade'
+      end
+      item
+        FieldName = 'valor_unid'
+      end
+      item
+        FieldName = 'servico_nome'
+        FieldType = fftString
+        Size = 50
+      end>
+  end
+  object FDQry_RelOrcamentoItens: TFDQuery
+    Active = True
+    Connection = DM.FDConnection
+    SQL.Strings = (
+      'SELECT '
+      '  oi.cod_orcamento,'
+      '  oi.id_servico,'
+      '  oi.quantidade,'
+      '  oi.valor_unid,'
+      '  s.nome as servico_nome'
+      'FROM '
+      '  orcamento_itens oi'
+      'LEFT JOIN'
+      '  servicos s ON oi.id_servico = s.id'
+      'WHERE'
+      '  oi.cod_orcamento = :cod_orcamento')
+    Left = 240
+    Top = 57
+    ParamData = <
+      item
+        Name = 'COD_ORCAMENTO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object FDQry_RelOrcamentoItenscod_orcamento: TIntegerField
+      FieldName = 'cod_orcamento'
+      Origin = 'cod_orcamento'
+    end
+    object FDQry_RelOrcamentoItensid_servico: TIntegerField
+      FieldName = 'id_servico'
+      Origin = 'id_servico'
+    end
+    object FDQry_RelOrcamentoItensquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+    end
+    object FDQry_RelOrcamentoItensvalor_unid: TFloatField
+      FieldName = 'valor_unid'
+      Origin = 'valor_unid'
+    end
+    object FDQry_RelOrcamentoItensservico_nome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'servico_nome'
+      Origin = 'servico_nome'
+      Size = 50
+    end
+  end
+  object DS_RelOrcamentoItens: TDataSource
+    DataSet = FDQry_RelOrcamentoItens
+    Left = 328
+    Top = 97
+  end
+end

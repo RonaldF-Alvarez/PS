@@ -1,0 +1,89 @@
+unit UFrmRelOrcamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, frxSmartMemo, frxClass, frxDBSet,
+  frCoreClasses, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
+
+type
+  TFrmRelOrc = class(TForm)
+    RelReportOrcamento: TfrxReport;
+    DSReportOrc: TfrxDBDataset;
+    FDQry_ReportOrcamento: TFDQuery;
+    DS_ReportOrcamento: TDataSource;
+    DSReportOrcItem: TfrxDBDataset;
+    FDQry_ReportOrcamentoItem: TFDQuery;
+    DS_ReportOrcamentoItem: TDataSource;
+    FDQry_ReportOrcamentoItemcod_orcamento: TIntegerField;
+    FDQry_ReportOrcamentoItemid_servico: TIntegerField;
+    FDQry_ReportOrcamentoItemquantidade: TIntegerField;
+    FDQry_ReportOrcamentoItemvalor_unid: TFloatField;
+    FDQry_ReportOrcamentoItemservico_nome: TWideStringField;
+    FDQry_ReportOrcamentocod: TIntegerField;
+    FDQry_ReportOrcamentocod_cliente: TIntegerField;
+    FDQry_ReportOrcamentodata_orcamento: TSQLTimeStampField;
+    FDQry_ReportOrcamentostatus: TIntegerField;
+    FDQry_ReportOrcamentocontratantes_nome: TWideStringField;
+    FDQry_ReportOrcamentocontratantes_cpf: TWideStringField;
+    FDQry_ReportOrcamentocontratantes_telefone: TWideStringField;
+    FDQry_ReportOrcamentoItemcalc_total_orcamento: TFloatField;
+    FDQry_ReportOrcamentoItemcalc_total_unidade: TFloatField;
+    FDQry_ReportOrcamentoItemCalc_total: TFloatField;
+    procedure FDQry_ReportOrcamentoBeforeOpen(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure FDQry_ReportOrcamentoItemCalcFields(DataSet: TDataSet);
+    procedure DS_ReportOrcamentoItemDataChange(Sender: TObject; Field: TField);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmRelOrc: TFrmRelOrc;
+
+implementation
+
+
+
+{$R *.dfm}
+
+uses UDM, UOrcamento;
+
+procedure TFrmRelOrc.DS_ReportOrcamentoItemDataChange(Sender: TObject;
+  Field: TField);
+var
+  total_orcamento : Double;
+begin
+  total_orcamento := Frm_Orcamento.FDQry_OrcamentoItem.FieldByName('calc_total_orcamento').AsFloat;
+
+  FDQry_ReportOrcamentoItemCalc_total.AsFloat := total_orcamento;
+
+end;
+
+procedure TFrmRelOrc.FDQry_ReportOrcamentoBeforeOpen(DataSet: TDataSet);
+begin
+  //FDQry_ReportOrcamento.SQL.Add('Order by O.cod, O.data_orcamento')
+end;
+
+procedure TFrmRelOrc.FDQry_ReportOrcamentoItemCalcFields(DataSet: TDataSet);
+var
+  total_orcamento : Double;
+  qtde: integer;
+begin
+  FDQry_ReportOrcamentoItemcalc_total_unidade.asfloat :=
+                      FDQry_ReportOrcamentoItemquantidade.AsFloat * FDQry_ReportOrcamentoItemvalor_unid.AsFloat;
+end;
+
+procedure TFrmRelOrc.FormCreate(Sender: TObject);
+begin
+  //FDQry_ReportOrcamento.Open;
+  //FDQry_ReportOrcamentoItem.Open;
+end;
+
+end.

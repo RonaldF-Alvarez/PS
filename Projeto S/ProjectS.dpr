@@ -8,7 +8,9 @@ uses
   UCadClient in 'UCadClient.pas' {Frm_CadClient},
   UCadService in 'UCadService.pas' {Frm_CadService},
   UCadGroup in 'UCadGroup.pas' {Frm_CadGroup},
-  UCadPadrao in 'Tools\UCadPadrao.pas' {Frm_Padrao};
+  UCadPadrao in 'Tools\UCadPadrao.pas' {Frm_Padrao},
+  UFrmRelOrcamento in 'Rel\UFrmRelOrcamento.pas' {FrmRelOrc},
+  UCallRelOrcamento in 'Tools\UCallRelOrcamento.pas' {FrmCallRelOrcamento};
 
 {$R *.res}
 

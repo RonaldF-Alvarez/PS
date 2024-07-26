@@ -130,6 +130,14 @@
             <Form>Frm_Padrao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Rel\UFrmRelOrcamento.pas">
+            <Form>FrmRelOrc</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Tools\UCallRelOrcamento.pas">
+            <Form>FrmCallRelOrcamento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -153,6 +161,20 @@
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfcxc28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfcxc28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfcxpTee28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfcxpTee28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfqbIBX28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfqbIBX28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfrxIBX28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfrxIBX28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfrxTee28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfrxTee28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfsIBX28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfsIBX28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfsTee28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\dclfsTee28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\frxIBXQueryBuilder28.bpl">File D:\BackEND\Delphi\FastReport\Fast Reports VCL\2024.2.6\Trial\LibRS28\VCL\Win32\frxIBXQueryBuilder28.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\Fast Reports VCL\2024.2.6\Trial\LibRS28\FMX\Win32\dclFMXfcxcd28.bpl">FastCube FMX - Charting Components by Fast Reports Inc</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\Fast Reports VCL\2024.2.6\Trial\LibRS28\FMX\Win32\dclFMXfcxpTeed28.bpl">FastCube FMX - FastReport integration TeeChart by Fast Reports Inc</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\Fast Reports VCL\2024.2.6\Trial\LibRS28\FMX\Win32\dclFMXfrxIBX28.bpl">FastReport FMX - IBX Components by Fast Reports Inc</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\Fast Reports VCL\2024.2.6\Trial\LibRS28\FMX\Win32\dclFMXfrxTee28.bpl">FastReport FMX - Tee Components by Fast Reports Inc</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\Fast Reports VCL\2024.2.6\Trial\LibRS28\FMX\Win32\dclFMXfsIBX28.bpl">FastScript FMX - IBX Components by Fast Reports Inc</Excluded_Packages>
+                    <Excluded_Packages Name="D:\BackEND\Delphi\Fast Reports VCL\2024.2.6\Trial\LibRS28\FMX\Win32\dclFMXfsTee28.bpl">FastScript FMX - Tee Components by Fast Reports Inc</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
